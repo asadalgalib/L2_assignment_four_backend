@@ -1,0 +1,92 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model TutorProfile {
+  id            String   @id @default(uuid())
+  tutorId       String?
+  gender        GENDER
+  qualification String?
+  tutionInfo    String?
+  reviews       String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([tutorId])
+}
+
+enum GENDER {
+  Male
+  Female
+}
+
+model TutionInfo {
+  id            String   @id @default(uuid())
+  tutorId       String?
+  availability  Boolean  @default(true)
+  salary        Int
+  subjects      String[]
+  availableTime String
+  avaiableDay   String[]
+
+  @@index([tutorId])
+}
+
+model Qualification {
+  id        String  @id @default(uuid())
+  tutorId   String?
+  exam      String  @db.Text
+  year      String  @db.Text
+  gpa       String
+  group     String  @db.Text
+  institute String  @db.Text
+
+  @@index([tutorId])
+}
+
+model Categories {
+  id       String  @id @default(uuid())
+  tutorId  String?
+  category String  @db.Text
+}
+
+model Reviews {
+  id        String  @id @default(uuid())
+  tutorId   String?
+  studentId String?
+  rating    Int
+  text      String  @db.Text
+
+  @@index([tutorId])
+  @@index([studentId])
+}
+
+model Booking {
+  id          String  @id @default(uuid())
+  tutorId     String?
+  studentId   String?
+  start_date  String
+  end_date    String
+  total_price Int
+  status      BOOKING @default(CONFIRMED)
+
+  @@index([tutorId])
+  @@index([studentId])
+}
+
+enum BOOKING {
+  CONFIRMED
+  COMPLETED
+  CANCELED
+}
