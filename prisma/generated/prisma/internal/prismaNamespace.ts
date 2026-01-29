@@ -1306,7 +1306,8 @@ export const TutionInfoScalarFieldEnum = {
   salary: 'salary',
   subjects: 'subjects',
   availableTime: 'availableTime',
-  avaiableDay: 'avaiableDay'
+  startDate: 'startDate',
+  endDate: 'endDate'
 } as const
 
 export type TutionInfoScalarFieldEnum = (typeof TutionInfoScalarFieldEnum)[keyof typeof TutionInfoScalarFieldEnum]

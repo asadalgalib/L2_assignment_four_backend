@@ -40,6 +40,8 @@ export type TutionInfoMinAggregateOutputType = {
   availability: boolean | null
   salary: number | null
   availableTime: string | null
+  startDate: Date | null
+  endDate: Date | null
 }
 
 export type TutionInfoMaxAggregateOutputType = {
@@ -48,6 +50,8 @@ export type TutionInfoMaxAggregateOutputType = {
   availability: boolean | null
   salary: number | null
   availableTime: string | null
+  startDate: Date | null
+  endDate: Date | null
 }
 
 export type TutionInfoCountAggregateOutputType = {
@@ -57,7 +61,8 @@ export type TutionInfoCountAggregateOutputType = {
   salary: number
   subjects: number
   availableTime: number
-  avaiableDay: number
+  startDate: number
+  endDate: number
   _all: number
 }
 
@@ -76,6 +81,8 @@ export type TutionInfoMinAggregateInputType = {
   availability?: true
   salary?: true
   availableTime?: true
+  startDate?: true
+  endDate?: true
 }
 
 export type TutionInfoMaxAggregateInputType = {
@@ -84,6 +91,8 @@ export type TutionInfoMaxAggregateInputType = {
   availability?: true
   salary?: true
   availableTime?: true
+  startDate?: true
+  endDate?: true
 }
 
 export type TutionInfoCountAggregateInputType = {
@@ -93,7 +102,8 @@ export type TutionInfoCountAggregateInputType = {
   salary?: true
   subjects?: true
   availableTime?: true
-  avaiableDay?: true
+  startDate?: true
+  endDate?: true
   _all?: true
 }
 
@@ -190,7 +200,8 @@ export type TutionInfoGroupByOutputType = {
   salary: number
   subjects: string[]
   availableTime: string
-  avaiableDay: string[]
+  startDate: Date
+  endDate: Date
   _count: TutionInfoCountAggregateOutputType | null
   _avg: TutionInfoAvgAggregateOutputType | null
   _sum: TutionInfoSumAggregateOutputType | null
@@ -223,7 +234,8 @@ export type TutionInfoWhereInput = {
   salary?: Prisma.IntFilter<"TutionInfo"> | number
   subjects?: Prisma.StringNullableListFilter<"TutionInfo">
   availableTime?: Prisma.StringFilter<"TutionInfo"> | string
-  avaiableDay?: Prisma.StringNullableListFilter<"TutionInfo">
+  startDate?: Prisma.DateTimeFilter<"TutionInfo"> | Date | string
+  endDate?: Prisma.DateTimeFilter<"TutionInfo"> | Date | string
   tutorProfile?: Prisma.XOR<Prisma.TutorProfileScalarRelationFilter, Prisma.TutorProfileWhereInput>
 }
 
@@ -234,7 +246,8 @@ export type TutionInfoOrderByWithRelationInput = {
   salary?: Prisma.SortOrder
   subjects?: Prisma.SortOrder
   availableTime?: Prisma.SortOrder
-  avaiableDay?: Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  endDate?: Prisma.SortOrder
   tutorProfile?: Prisma.TutorProfileOrderByWithRelationInput
 }
 
@@ -248,7 +261,8 @@ export type TutionInfoWhereUniqueInput = Prisma.AtLeast<{
   salary?: Prisma.IntFilter<"TutionInfo"> | number
   subjects?: Prisma.StringNullableListFilter<"TutionInfo">
   availableTime?: Prisma.StringFilter<"TutionInfo"> | string
-  avaiableDay?: Prisma.StringNullableListFilter<"TutionInfo">
+  startDate?: Prisma.DateTimeFilter<"TutionInfo"> | Date | string
+  endDate?: Prisma.DateTimeFilter<"TutionInfo"> | Date | string
   tutorProfile?: Prisma.XOR<Prisma.TutorProfileScalarRelationFilter, Prisma.TutorProfileWhereInput>
 }, "id" | "tutorId">
 
@@ -259,7 +273,8 @@ export type TutionInfoOrderByWithAggregationInput = {
   salary?: Prisma.SortOrder
   subjects?: Prisma.SortOrder
   availableTime?: Prisma.SortOrder
-  avaiableDay?: Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  endDate?: Prisma.SortOrder
   _count?: Prisma.TutionInfoCountOrderByAggregateInput
   _avg?: Prisma.TutionInfoAvgOrderByAggregateInput
   _max?: Prisma.TutionInfoMaxOrderByAggregateInput
@@ -277,7 +292,8 @@ export type TutionInfoScalarWhereWithAggregatesInput = {
   salary?: Prisma.IntWithAggregatesFilter<"TutionInfo"> | number
   subjects?: Prisma.StringNullableListFilter<"TutionInfo">
   availableTime?: Prisma.StringWithAggregatesFilter<"TutionInfo"> | string
-  avaiableDay?: Prisma.StringNullableListFilter<"TutionInfo">
+  startDate?: Prisma.DateTimeWithAggregatesFilter<"TutionInfo"> | Date | string
+  endDate?: Prisma.DateTimeWithAggregatesFilter<"TutionInfo"> | Date | string
 }
 
 export type TutionInfoCreateInput = {
@@ -286,7 +302,8 @@ export type TutionInfoCreateInput = {
   salary: number
   subjects?: Prisma.TutionInfoCreatesubjectsInput | string[]
   availableTime: string
-  avaiableDay?: Prisma.TutionInfoCreateavaiableDayInput | string[]
+  startDate: Date | string
+  endDate: Date | string
   tutorProfile: Prisma.TutorProfileCreateNestedOneWithoutTutionInfoInput
 }
 
@@ -297,7 +314,8 @@ export type TutionInfoUncheckedCreateInput = {
   salary: number
   subjects?: Prisma.TutionInfoCreatesubjectsInput | string[]
   availableTime: string
-  avaiableDay?: Prisma.TutionInfoCreateavaiableDayInput | string[]
+  startDate: Date | string
+  endDate: Date | string
 }
 
 export type TutionInfoUpdateInput = {
@@ -306,7 +324,8 @@ export type TutionInfoUpdateInput = {
   salary?: Prisma.IntFieldUpdateOperationsInput | number
   subjects?: Prisma.TutionInfoUpdatesubjectsInput | string[]
   availableTime?: Prisma.StringFieldUpdateOperationsInput | string
-  avaiableDay?: Prisma.TutionInfoUpdateavaiableDayInput | string[]
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tutorProfile?: Prisma.TutorProfileUpdateOneRequiredWithoutTutionInfoNestedInput
 }
 
@@ -317,7 +336,8 @@ export type TutionInfoUncheckedUpdateInput = {
   salary?: Prisma.IntFieldUpdateOperationsInput | number
   subjects?: Prisma.TutionInfoUpdatesubjectsInput | string[]
   availableTime?: Prisma.StringFieldUpdateOperationsInput | string
-  avaiableDay?: Prisma.TutionInfoUpdateavaiableDayInput | string[]
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TutionInfoCreateManyInput = {
@@ -327,7 +347,8 @@ export type TutionInfoCreateManyInput = {
   salary: number
   subjects?: Prisma.TutionInfoCreatesubjectsInput | string[]
   availableTime: string
-  avaiableDay?: Prisma.TutionInfoCreateavaiableDayInput | string[]
+  startDate: Date | string
+  endDate: Date | string
 }
 
 export type TutionInfoUpdateManyMutationInput = {
@@ -336,7 +357,8 @@ export type TutionInfoUpdateManyMutationInput = {
   salary?: Prisma.IntFieldUpdateOperationsInput | number
   subjects?: Prisma.TutionInfoUpdatesubjectsInput | string[]
   availableTime?: Prisma.StringFieldUpdateOperationsInput | string
-  avaiableDay?: Prisma.TutionInfoUpdateavaiableDayInput | string[]
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TutionInfoUncheckedUpdateManyInput = {
@@ -346,7 +368,8 @@ export type TutionInfoUncheckedUpdateManyInput = {
   salary?: Prisma.IntFieldUpdateOperationsInput | number
   subjects?: Prisma.TutionInfoUpdatesubjectsInput | string[]
   availableTime?: Prisma.StringFieldUpdateOperationsInput | string
-  avaiableDay?: Prisma.TutionInfoUpdateavaiableDayInput | string[]
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type StringNullableListFilter<$PrismaModel = never> = {
@@ -364,7 +387,8 @@ export type TutionInfoCountOrderByAggregateInput = {
   salary?: Prisma.SortOrder
   subjects?: Prisma.SortOrder
   availableTime?: Prisma.SortOrder
-  avaiableDay?: Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  endDate?: Prisma.SortOrder
 }
 
 export type TutionInfoAvgOrderByAggregateInput = {
@@ -377,6 +401,8 @@ export type TutionInfoMaxOrderByAggregateInput = {
   availability?: Prisma.SortOrder
   salary?: Prisma.SortOrder
   availableTime?: Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  endDate?: Prisma.SortOrder
 }
 
 export type TutionInfoMinOrderByAggregateInput = {
@@ -385,6 +411,8 @@ export type TutionInfoMinOrderByAggregateInput = {
   availability?: Prisma.SortOrder
   salary?: Prisma.SortOrder
   availableTime?: Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  endDate?: Prisma.SortOrder
 }
 
 export type TutionInfoSumOrderByAggregateInput = {
@@ -400,16 +428,7 @@ export type TutionInfoCreatesubjectsInput = {
   set: string[]
 }
 
-export type TutionInfoCreateavaiableDayInput = {
-  set: string[]
-}
-
 export type TutionInfoUpdatesubjectsInput = {
-  set?: string[]
-  push?: string | string[]
-}
-
-export type TutionInfoUpdateavaiableDayInput = {
   set?: string[]
   push?: string | string[]
 }
@@ -452,7 +471,8 @@ export type TutionInfoCreateWithoutTutorProfileInput = {
   salary: number
   subjects?: Prisma.TutionInfoCreatesubjectsInput | string[]
   availableTime: string
-  avaiableDay?: Prisma.TutionInfoCreateavaiableDayInput | string[]
+  startDate: Date | string
+  endDate: Date | string
 }
 
 export type TutionInfoUncheckedCreateWithoutTutorProfileInput = {
@@ -461,7 +481,8 @@ export type TutionInfoUncheckedCreateWithoutTutorProfileInput = {
   salary: number
   subjects?: Prisma.TutionInfoCreatesubjectsInput | string[]
   availableTime: string
-  avaiableDay?: Prisma.TutionInfoCreateavaiableDayInput | string[]
+  startDate: Date | string
+  endDate: Date | string
 }
 
 export type TutionInfoCreateOrConnectWithoutTutorProfileInput = {
@@ -486,7 +507,8 @@ export type TutionInfoUpdateWithoutTutorProfileInput = {
   salary?: Prisma.IntFieldUpdateOperationsInput | number
   subjects?: Prisma.TutionInfoUpdatesubjectsInput | string[]
   availableTime?: Prisma.StringFieldUpdateOperationsInput | string
-  avaiableDay?: Prisma.TutionInfoUpdateavaiableDayInput | string[]
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TutionInfoUncheckedUpdateWithoutTutorProfileInput = {
@@ -495,7 +517,8 @@ export type TutionInfoUncheckedUpdateWithoutTutorProfileInput = {
   salary?: Prisma.IntFieldUpdateOperationsInput | number
   subjects?: Prisma.TutionInfoUpdatesubjectsInput | string[]
   availableTime?: Prisma.StringFieldUpdateOperationsInput | string
-  avaiableDay?: Prisma.TutionInfoUpdateavaiableDayInput | string[]
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -507,7 +530,8 @@ export type TutionInfoSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   salary?: boolean
   subjects?: boolean
   availableTime?: boolean
-  avaiableDay?: boolean
+  startDate?: boolean
+  endDate?: boolean
   tutorProfile?: boolean | Prisma.TutorProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tutionInfo"]>
 
@@ -518,7 +542,8 @@ export type TutionInfoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   salary?: boolean
   subjects?: boolean
   availableTime?: boolean
-  avaiableDay?: boolean
+  startDate?: boolean
+  endDate?: boolean
   tutorProfile?: boolean | Prisma.TutorProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tutionInfo"]>
 
@@ -529,7 +554,8 @@ export type TutionInfoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   salary?: boolean
   subjects?: boolean
   availableTime?: boolean
-  avaiableDay?: boolean
+  startDate?: boolean
+  endDate?: boolean
   tutorProfile?: boolean | Prisma.TutorProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tutionInfo"]>
 
@@ -540,10 +566,11 @@ export type TutionInfoSelectScalar = {
   salary?: boolean
   subjects?: boolean
   availableTime?: boolean
-  avaiableDay?: boolean
+  startDate?: boolean
+  endDate?: boolean
 }
 
-export type TutionInfoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tutorId" | "availability" | "salary" | "subjects" | "availableTime" | "avaiableDay", ExtArgs["result"]["tutionInfo"]>
+export type TutionInfoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tutorId" | "availability" | "salary" | "subjects" | "availableTime" | "startDate" | "endDate", ExtArgs["result"]["tutionInfo"]>
 export type TutionInfoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tutorProfile?: boolean | Prisma.TutorProfileDefaultArgs<ExtArgs>
 }
@@ -566,7 +593,8 @@ export type $TutionInfoPayload<ExtArgs extends runtime.Types.Extensions.Internal
     salary: number
     subjects: string[]
     availableTime: string
-    avaiableDay: string[]
+    startDate: Date
+    endDate: Date
   }, ExtArgs["result"]["tutionInfo"]>
   composites: {}
 }
@@ -997,7 +1025,8 @@ export interface TutionInfoFieldRefs {
   readonly salary: Prisma.FieldRef<"TutionInfo", 'Int'>
   readonly subjects: Prisma.FieldRef<"TutionInfo", 'String[]'>
   readonly availableTime: Prisma.FieldRef<"TutionInfo", 'String'>
-  readonly avaiableDay: Prisma.FieldRef<"TutionInfo", 'String[]'>
+  readonly startDate: Prisma.FieldRef<"TutionInfo", 'DateTime'>
+  readonly endDate: Prisma.FieldRef<"TutionInfo", 'DateTime'>
 }
     
 

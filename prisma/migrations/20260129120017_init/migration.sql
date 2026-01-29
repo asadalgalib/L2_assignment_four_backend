@@ -125,7 +125,8 @@ CREATE TABLE "TutionInfo" (
     "salary" INTEGER NOT NULL,
     "subjects" TEXT[],
     "availableTime" TEXT NOT NULL,
-    "avaiableDay" TEXT[],
+    "startDate" TIMESTAMP(3) NOT NULL,
+    "endDate" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "TutionInfo_pkey" PRIMARY KEY ("id")
 );

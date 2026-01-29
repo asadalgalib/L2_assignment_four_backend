@@ -31,15 +31,9 @@ const authorize = (...roles: UserRole[]) => {
             })
 
             if (!session) {
-                res.status(401).json({
+                return res.status(401).json({
                     success: false,
                     message: "You are not authorized"
-                })
-            }
-            if (!session?.user.emailVerified) {
-                res.status(403).json({
-                    success: false,
-                    message: "Your email is not verified"
                 })
             }
             if (session) {
@@ -52,7 +46,7 @@ const authorize = (...roles: UserRole[]) => {
                 }
             }
             if (roles.length && !roles.includes(req.user?.role as UserRole)) {
-                res.status(401).json({
+                return res.status(401).json({
                     success: false,
                     erro: "Forbidden",
                     message: "You are not authorized"

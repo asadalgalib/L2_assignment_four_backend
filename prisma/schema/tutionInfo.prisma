@@ -6,7 +6,8 @@ model TutionInfo {
   salary        Int
   subjects      String[]
   availableTime String
-  avaiableDay   String[]
+  startDate     DateTime
+  endDate       DateTime
 
   @@index([tutorId])
 }
