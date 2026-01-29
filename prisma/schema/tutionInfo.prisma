@@ -1,0 +1,12 @@
+model TutionInfo {
+  id            String       @id @default(uuid())
+  tutorId       String       @unique
+  tutorProfile  TutorProfile @relation(fields: [tutorId], references: [tutorId])
+  availability  Boolean      @default(true)
+  salary        Int
+  subjects      String[]
+  availableTime String
+  avaiableDay   String[]
+
+  @@index([tutorId])
+}

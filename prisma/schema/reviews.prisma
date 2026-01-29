@@ -1,0 +1,13 @@
+model Reviews {
+  id           String       @id @default(uuid())
+  tutorId      String
+  tutorProfile TutorProfile @relation(fields: [tutorId], references: [tutorId])
+  studentId    String
+  user         User         @relation(fields: [studentId], references: [id])
+  rating       Int
+  text         String       @db.Text
+
+  @@unique([tutorId, studentId])
+  @@index([tutorId])
+  @@index([studentId])
+}

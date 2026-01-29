@@ -1,0 +1,8 @@
+model Categories {
+    id           String       @id @default(uuid())
+    tutorId      String
+    tutorProfile TutorProfile @relation(fields: [tutorId], references: [tutorId])
+    category     String       @db.Text
+
+    @@index([tutorId])
+}

@@ -1,0 +1,12 @@
+model Qualification {
+  id           String       @id @default(uuid())
+  tutorId      String
+  tutorProfile TutorProfile @relation(fields: [tutorId], references: [tutorId])
+  exam         String       @db.Text
+  year         String       @db.Text
+  gpa          String       @db.Text
+  group        String       @db.Text
+  institute    String       @db.Text
+
+  @@index([tutorId])
+}
