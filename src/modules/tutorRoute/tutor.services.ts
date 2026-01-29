@@ -31,8 +31,30 @@ const createTutionInfo = async ({
         data: result
     }
 }
+// * Create Qualifications
+const createQualification = async (data: { tutorId: string, exam: string, year: string, gpa: string, group: string, institute: string }) => {
+    const result = await prisma.qualification.create({
+        data
+    })
+    return {
+        success: true,
+        data: result
+    }
+}
+// * Create Category 
+const createCategry = async (data: { tutorId: string, category: string }) => {
+    const result = await prisma.categories.create({
+        data
+    });
+    return {
+        success: true,
+        data: result
+    }
+}
 
 export const tutorServices = {
     createTutorProfile,
-    createTutionInfo
+    createTutionInfo,
+    createQualification,
+    createCategry
 }

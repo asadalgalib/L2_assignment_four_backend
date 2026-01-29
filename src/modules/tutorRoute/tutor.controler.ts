@@ -31,8 +31,40 @@ const createTutionInfo = async (req: Request, res: Response) => {
         })
     }
 }
+// * Create Qualifications
+const createQualification = async (req: Request, res: Response) => {
+    try {
+        const tutorId = req.user?.id as string;
+        const { exam, year, gpa, group, institute } = req.body;
+        console.log(tutorId, req.body);
+        const result = await tutorServices.createQualification({ tutorId, exam, year, gpa, group, institute });
+        return res.status(201).json(result)
+    } catch (error: any) {
+        return res.status(400).json({
+            message: "Something went wrong",
+            error: error
+        })
+    }
+}
+// * Create Category 
+const createCategry = async (req: Request, res: Response) => {
+    try {
+        const tutorId = req.user?.id as string;
+        const { category } = req.body;
+        console.log(tutorId, req.body);
+        const result = await tutorServices.createCategry({ tutorId, category });
+        return res.status(201).json(result)
+    } catch (error: any) {
+        return res.status(400).json({
+            message: "Something went wrong",
+            error: error
+        })
+    }
+}
 
 export const tutorControler = {
     createTutorProfile,
-    createTutionInfo
+    createTutionInfo,
+    createQualification,
+    createCategry
 }
