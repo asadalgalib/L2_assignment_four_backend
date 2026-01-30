@@ -5,6 +5,7 @@ import { toNodeHandler } from "better-auth/node";
 import { publicRoutes } from './modules/publicRoute/public.route';
 import { tutorRoutes } from './modules/tutorRoute/tutor.route';
 import { bookingRoutes } from './modules/bookingRoute/booking.route';
+import { userRoutes } from './modules/userRoute/user.route';
 
 const app = express();
 app.use(express.json());
@@ -15,6 +16,9 @@ app.use(cors({
 
 // * Auth Routes
 app.all("/api/auth/*splat", toNodeHandler(auth));
+
+// * User Route
+app.use("/user", userRoutes)
 
 // * Public routes
 app.use("/public", publicRoutes);
