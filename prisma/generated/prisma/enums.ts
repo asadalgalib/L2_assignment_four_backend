@@ -18,6 +18,14 @@ export const UserRole = {
 export type UserRole = (typeof UserRole)[keyof typeof UserRole]
 
 
+export const GENDER = {
+  Male: 'Male',
+  Female: 'Female'
+} as const
+
+export type GENDER = (typeof GENDER)[keyof typeof GENDER]
+
+
 export const UserStatus = {
   ACTIVE: 'ACTIVE',
   DEACTIVE: 'DEACTIVE'
@@ -33,11 +41,3 @@ export const BOOKING = {
 } as const
 
 export type BOOKING = (typeof BOOKING)[keyof typeof BOOKING]
-
-
-export const GENDER = {
-  Male: 'Male',
-  Female: 'Female'
-} as const
-
-export type GENDER = (typeof GENDER)[keyof typeof GENDER]

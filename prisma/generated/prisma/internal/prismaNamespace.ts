@@ -392,8 +392,7 @@ export const ModelName = {
   Categories: 'Categories',
   Qualification: 'Qualification',
   Reviews: 'Reviews',
-  TutionInfo: 'TutionInfo',
-  TutorProfile: 'TutorProfile'
+  TutionInfo: 'TutionInfo'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -409,7 +408,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "booking" | "categories" | "qualification" | "reviews" | "tutionInfo" | "tutorProfile"
+    modelProps: "user" | "session" | "account" | "verification" | "booking" | "categories" | "qualification" | "reviews" | "tutionInfo"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1079,80 +1078,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    TutorProfile: {
-      payload: Prisma.$TutorProfilePayload<ExtArgs>
-      fields: Prisma.TutorProfileFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.TutorProfileFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TutorProfilePayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.TutorProfileFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TutorProfilePayload>
-        }
-        findFirst: {
-          args: Prisma.TutorProfileFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TutorProfilePayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.TutorProfileFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TutorProfilePayload>
-        }
-        findMany: {
-          args: Prisma.TutorProfileFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TutorProfilePayload>[]
-        }
-        create: {
-          args: Prisma.TutorProfileCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TutorProfilePayload>
-        }
-        createMany: {
-          args: Prisma.TutorProfileCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.TutorProfileCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TutorProfilePayload>[]
-        }
-        delete: {
-          args: Prisma.TutorProfileDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TutorProfilePayload>
-        }
-        update: {
-          args: Prisma.TutorProfileUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TutorProfilePayload>
-        }
-        deleteMany: {
-          args: Prisma.TutorProfileDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.TutorProfileUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.TutorProfileUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TutorProfilePayload>[]
-        }
-        upsert: {
-          args: Prisma.TutorProfileUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TutorProfilePayload>
-        }
-        aggregate: {
-          args: Prisma.TutorProfileAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateTutorProfile>
-        }
-        groupBy: {
-          args: Prisma.TutorProfileGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.TutorProfileGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.TutorProfileCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.TutorProfileCountAggregateOutputType> | number
-        }
-      }
-    }
   }
 } & {
   other: {
@@ -1201,8 +1126,10 @@ export const UserScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   role: 'role',
+  gender: 'gender',
   phone: 'phone',
-  status: 'status'
+  status: 'status',
+  isFeatured: 'isFeatured'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -1293,7 +1220,8 @@ export const ReviewsScalarFieldEnum = {
   tutorId: 'tutorId',
   studentId: 'studentId',
   rating: 'rating',
-  text: 'text'
+  text: 'text',
+  createdAt: 'createdAt'
 } as const
 
 export type ReviewsScalarFieldEnum = (typeof ReviewsScalarFieldEnum)[keyof typeof ReviewsScalarFieldEnum]
@@ -1311,17 +1239,6 @@ export const TutionInfoScalarFieldEnum = {
 } as const
 
 export type TutionInfoScalarFieldEnum = (typeof TutionInfoScalarFieldEnum)[keyof typeof TutionInfoScalarFieldEnum]
-
-
-export const TutorProfileScalarFieldEnum = {
-  id: 'id',
-  tutorId: 'tutorId',
-  gender: 'gender',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type TutorProfileScalarFieldEnum = (typeof TutorProfileScalarFieldEnum)[keyof typeof TutorProfileScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1404,6 +1321,20 @@ export type ListEnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$Pri
 
 
 /**
+ * Reference to a field of type 'GENDER'
+ */
+export type EnumGENDERFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GENDER'>
+    
+
+
+/**
+ * Reference to a field of type 'GENDER[]'
+ */
+export type ListEnumGENDERFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GENDER[]'>
+    
+
+
+/**
  * Reference to a field of type 'UserStatus'
  */
 export type EnumUserStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserStatus'>
@@ -1442,20 +1373,6 @@ export type EnumBOOKINGFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMo
  * Reference to a field of type 'BOOKING[]'
  */
 export type ListEnumBOOKINGFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BOOKING[]'>
-    
-
-
-/**
- * Reference to a field of type 'GENDER'
- */
-export type EnumGENDERFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GENDER'>
-    
-
-
-/**
- * Reference to a field of type 'GENDER[]'
- */
-export type ListEnumGENDERFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GENDER[]'>
     
 
 
@@ -1576,7 +1493,6 @@ export type GlobalOmitConfig = {
   qualification?: Prisma.QualificationOmit
   reviews?: Prisma.ReviewsOmit
   tutionInfo?: Prisma.TutionInfoOmit
-  tutorProfile?: Prisma.TutorProfileOmit
 }
 
 /* Types for Logging */

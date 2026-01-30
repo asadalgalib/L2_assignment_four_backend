@@ -37,8 +37,21 @@ const getTutorById = async (req: Request, res: Response) => {
         })
     }
 }
+// * Get Categories
+const getCategories = async (req: Request, res: Response) => {
+    try {
+        const result = await publicServices.getCategories();
+        return res.status(200).json(result)
+    } catch (error: any) {
+        return res.status(400).json({
+            message: "Something went wrong",
+            error: error
+        })
+    }
+}
 
 export const publicControler = {
     getTutor,
-    getTutorById
+    getTutorById,
+    getCategories
 }

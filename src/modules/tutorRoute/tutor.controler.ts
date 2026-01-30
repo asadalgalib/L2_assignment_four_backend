@@ -1,20 +1,6 @@
 import { Request, Response } from "express";
 import { tutorServices } from "./tutor.services";
 
-// * Create Tutor Profile
-const createTutorProfile = async (req: Request, res: Response) => {
-    try {
-        const { gender } = req.body;
-        const tutorId = req.user?.id as string;
-        const result = await tutorServices.createTutorProfile(gender, tutorId);
-        return res.status(201).json(result)
-    } catch (error: any) {
-        return res.status(400).json({
-            message: "Something went wrong",
-            error: error
-        })
-    }
-}
 // * Create Tution Info
 const createTutionInfo = async (req: Request, res: Response) => {
     try {
@@ -55,15 +41,17 @@ const createCategry = async (req: Request, res: Response) => {
         const result = await tutorServices.createCategry({ tutorId, category });
         return res.status(201).json(result)
     } catch (error: any) {
+        console.error("PRISMA ERROR 👉", error);
+
         return res.status(400).json({
-            message: "Something went wrong",
-            error: error
+            message: error.message,
+            code: error.code,
+            meta: error.meta
         })
     }
 }
 
 export const tutorControler = {
-    createTutorProfile,
     createTutionInfo,
     createQualification,
     createCategry

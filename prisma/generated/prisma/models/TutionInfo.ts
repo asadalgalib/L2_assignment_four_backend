@@ -236,7 +236,7 @@ export type TutionInfoWhereInput = {
   availableTime?: Prisma.StringFilter<"TutionInfo"> | string
   startDate?: Prisma.DateTimeFilter<"TutionInfo"> | Date | string
   endDate?: Prisma.DateTimeFilter<"TutionInfo"> | Date | string
-  tutorProfile?: Prisma.XOR<Prisma.TutorProfileScalarRelationFilter, Prisma.TutorProfileWhereInput>
+  tutor?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type TutionInfoOrderByWithRelationInput = {
@@ -248,7 +248,7 @@ export type TutionInfoOrderByWithRelationInput = {
   availableTime?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
-  tutorProfile?: Prisma.TutorProfileOrderByWithRelationInput
+  tutor?: Prisma.UserOrderByWithRelationInput
 }
 
 export type TutionInfoWhereUniqueInput = Prisma.AtLeast<{
@@ -263,7 +263,7 @@ export type TutionInfoWhereUniqueInput = Prisma.AtLeast<{
   availableTime?: Prisma.StringFilter<"TutionInfo"> | string
   startDate?: Prisma.DateTimeFilter<"TutionInfo"> | Date | string
   endDate?: Prisma.DateTimeFilter<"TutionInfo"> | Date | string
-  tutorProfile?: Prisma.XOR<Prisma.TutorProfileScalarRelationFilter, Prisma.TutorProfileWhereInput>
+  tutor?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id" | "tutorId">
 
 export type TutionInfoOrderByWithAggregationInput = {
@@ -304,7 +304,7 @@ export type TutionInfoCreateInput = {
   availableTime: string
   startDate: Date | string
   endDate: Date | string
-  tutorProfile: Prisma.TutorProfileCreateNestedOneWithoutTutionInfoInput
+  tutor: Prisma.UserCreateNestedOneWithoutTutionInfoInput
 }
 
 export type TutionInfoUncheckedCreateInput = {
@@ -326,7 +326,7 @@ export type TutionInfoUpdateInput = {
   availableTime?: Prisma.StringFieldUpdateOperationsInput | string
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tutorProfile?: Prisma.TutorProfileUpdateOneRequiredWithoutTutionInfoNestedInput
+  tutor?: Prisma.UserUpdateOneRequiredWithoutTutionInfoNestedInput
 }
 
 export type TutionInfoUncheckedUpdateInput = {
@@ -370,6 +370,11 @@ export type TutionInfoUncheckedUpdateManyInput = {
   availableTime?: Prisma.StringFieldUpdateOperationsInput | string
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type TutionInfoNullableScalarRelationFilter = {
+  is?: Prisma.TutionInfoWhereInput | null
+  isNot?: Prisma.TutionInfoWhereInput | null
 }
 
 export type StringNullableListFilter<$PrismaModel = never> = {
@@ -419,9 +424,36 @@ export type TutionInfoSumOrderByAggregateInput = {
   salary?: Prisma.SortOrder
 }
 
-export type TutionInfoNullableScalarRelationFilter = {
-  is?: Prisma.TutionInfoWhereInput | null
-  isNot?: Prisma.TutionInfoWhereInput | null
+export type TutionInfoCreateNestedOneWithoutTutorInput = {
+  create?: Prisma.XOR<Prisma.TutionInfoCreateWithoutTutorInput, Prisma.TutionInfoUncheckedCreateWithoutTutorInput>
+  connectOrCreate?: Prisma.TutionInfoCreateOrConnectWithoutTutorInput
+  connect?: Prisma.TutionInfoWhereUniqueInput
+}
+
+export type TutionInfoUncheckedCreateNestedOneWithoutTutorInput = {
+  create?: Prisma.XOR<Prisma.TutionInfoCreateWithoutTutorInput, Prisma.TutionInfoUncheckedCreateWithoutTutorInput>
+  connectOrCreate?: Prisma.TutionInfoCreateOrConnectWithoutTutorInput
+  connect?: Prisma.TutionInfoWhereUniqueInput
+}
+
+export type TutionInfoUpdateOneWithoutTutorNestedInput = {
+  create?: Prisma.XOR<Prisma.TutionInfoCreateWithoutTutorInput, Prisma.TutionInfoUncheckedCreateWithoutTutorInput>
+  connectOrCreate?: Prisma.TutionInfoCreateOrConnectWithoutTutorInput
+  upsert?: Prisma.TutionInfoUpsertWithoutTutorInput
+  disconnect?: Prisma.TutionInfoWhereInput | boolean
+  delete?: Prisma.TutionInfoWhereInput | boolean
+  connect?: Prisma.TutionInfoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TutionInfoUpdateToOneWithWhereWithoutTutorInput, Prisma.TutionInfoUpdateWithoutTutorInput>, Prisma.TutionInfoUncheckedUpdateWithoutTutorInput>
+}
+
+export type TutionInfoUncheckedUpdateOneWithoutTutorNestedInput = {
+  create?: Prisma.XOR<Prisma.TutionInfoCreateWithoutTutorInput, Prisma.TutionInfoUncheckedCreateWithoutTutorInput>
+  connectOrCreate?: Prisma.TutionInfoCreateOrConnectWithoutTutorInput
+  upsert?: Prisma.TutionInfoUpsertWithoutTutorInput
+  disconnect?: Prisma.TutionInfoWhereInput | boolean
+  delete?: Prisma.TutionInfoWhereInput | boolean
+  connect?: Prisma.TutionInfoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TutionInfoUpdateToOneWithWhereWithoutTutorInput, Prisma.TutionInfoUpdateWithoutTutorInput>, Prisma.TutionInfoUncheckedUpdateWithoutTutorInput>
 }
 
 export type TutionInfoCreatesubjectsInput = {
@@ -433,39 +465,7 @@ export type TutionInfoUpdatesubjectsInput = {
   push?: string | string[]
 }
 
-export type TutionInfoCreateNestedOneWithoutTutorProfileInput = {
-  create?: Prisma.XOR<Prisma.TutionInfoCreateWithoutTutorProfileInput, Prisma.TutionInfoUncheckedCreateWithoutTutorProfileInput>
-  connectOrCreate?: Prisma.TutionInfoCreateOrConnectWithoutTutorProfileInput
-  connect?: Prisma.TutionInfoWhereUniqueInput
-}
-
-export type TutionInfoUncheckedCreateNestedOneWithoutTutorProfileInput = {
-  create?: Prisma.XOR<Prisma.TutionInfoCreateWithoutTutorProfileInput, Prisma.TutionInfoUncheckedCreateWithoutTutorProfileInput>
-  connectOrCreate?: Prisma.TutionInfoCreateOrConnectWithoutTutorProfileInput
-  connect?: Prisma.TutionInfoWhereUniqueInput
-}
-
-export type TutionInfoUpdateOneWithoutTutorProfileNestedInput = {
-  create?: Prisma.XOR<Prisma.TutionInfoCreateWithoutTutorProfileInput, Prisma.TutionInfoUncheckedCreateWithoutTutorProfileInput>
-  connectOrCreate?: Prisma.TutionInfoCreateOrConnectWithoutTutorProfileInput
-  upsert?: Prisma.TutionInfoUpsertWithoutTutorProfileInput
-  disconnect?: Prisma.TutionInfoWhereInput | boolean
-  delete?: Prisma.TutionInfoWhereInput | boolean
-  connect?: Prisma.TutionInfoWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.TutionInfoUpdateToOneWithWhereWithoutTutorProfileInput, Prisma.TutionInfoUpdateWithoutTutorProfileInput>, Prisma.TutionInfoUncheckedUpdateWithoutTutorProfileInput>
-}
-
-export type TutionInfoUncheckedUpdateOneWithoutTutorProfileNestedInput = {
-  create?: Prisma.XOR<Prisma.TutionInfoCreateWithoutTutorProfileInput, Prisma.TutionInfoUncheckedCreateWithoutTutorProfileInput>
-  connectOrCreate?: Prisma.TutionInfoCreateOrConnectWithoutTutorProfileInput
-  upsert?: Prisma.TutionInfoUpsertWithoutTutorProfileInput
-  disconnect?: Prisma.TutionInfoWhereInput | boolean
-  delete?: Prisma.TutionInfoWhereInput | boolean
-  connect?: Prisma.TutionInfoWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.TutionInfoUpdateToOneWithWhereWithoutTutorProfileInput, Prisma.TutionInfoUpdateWithoutTutorProfileInput>, Prisma.TutionInfoUncheckedUpdateWithoutTutorProfileInput>
-}
-
-export type TutionInfoCreateWithoutTutorProfileInput = {
+export type TutionInfoCreateWithoutTutorInput = {
   id?: string
   availability?: boolean
   salary: number
@@ -475,7 +475,7 @@ export type TutionInfoCreateWithoutTutorProfileInput = {
   endDate: Date | string
 }
 
-export type TutionInfoUncheckedCreateWithoutTutorProfileInput = {
+export type TutionInfoUncheckedCreateWithoutTutorInput = {
   id?: string
   availability?: boolean
   salary: number
@@ -485,23 +485,23 @@ export type TutionInfoUncheckedCreateWithoutTutorProfileInput = {
   endDate: Date | string
 }
 
-export type TutionInfoCreateOrConnectWithoutTutorProfileInput = {
+export type TutionInfoCreateOrConnectWithoutTutorInput = {
   where: Prisma.TutionInfoWhereUniqueInput
-  create: Prisma.XOR<Prisma.TutionInfoCreateWithoutTutorProfileInput, Prisma.TutionInfoUncheckedCreateWithoutTutorProfileInput>
+  create: Prisma.XOR<Prisma.TutionInfoCreateWithoutTutorInput, Prisma.TutionInfoUncheckedCreateWithoutTutorInput>
 }
 
-export type TutionInfoUpsertWithoutTutorProfileInput = {
-  update: Prisma.XOR<Prisma.TutionInfoUpdateWithoutTutorProfileInput, Prisma.TutionInfoUncheckedUpdateWithoutTutorProfileInput>
-  create: Prisma.XOR<Prisma.TutionInfoCreateWithoutTutorProfileInput, Prisma.TutionInfoUncheckedCreateWithoutTutorProfileInput>
+export type TutionInfoUpsertWithoutTutorInput = {
+  update: Prisma.XOR<Prisma.TutionInfoUpdateWithoutTutorInput, Prisma.TutionInfoUncheckedUpdateWithoutTutorInput>
+  create: Prisma.XOR<Prisma.TutionInfoCreateWithoutTutorInput, Prisma.TutionInfoUncheckedCreateWithoutTutorInput>
   where?: Prisma.TutionInfoWhereInput
 }
 
-export type TutionInfoUpdateToOneWithWhereWithoutTutorProfileInput = {
+export type TutionInfoUpdateToOneWithWhereWithoutTutorInput = {
   where?: Prisma.TutionInfoWhereInput
-  data: Prisma.XOR<Prisma.TutionInfoUpdateWithoutTutorProfileInput, Prisma.TutionInfoUncheckedUpdateWithoutTutorProfileInput>
+  data: Prisma.XOR<Prisma.TutionInfoUpdateWithoutTutorInput, Prisma.TutionInfoUncheckedUpdateWithoutTutorInput>
 }
 
-export type TutionInfoUpdateWithoutTutorProfileInput = {
+export type TutionInfoUpdateWithoutTutorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   availability?: Prisma.BoolFieldUpdateOperationsInput | boolean
   salary?: Prisma.IntFieldUpdateOperationsInput | number
@@ -511,7 +511,7 @@ export type TutionInfoUpdateWithoutTutorProfileInput = {
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type TutionInfoUncheckedUpdateWithoutTutorProfileInput = {
+export type TutionInfoUncheckedUpdateWithoutTutorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   availability?: Prisma.BoolFieldUpdateOperationsInput | boolean
   salary?: Prisma.IntFieldUpdateOperationsInput | number
@@ -532,7 +532,7 @@ export type TutionInfoSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   availableTime?: boolean
   startDate?: boolean
   endDate?: boolean
-  tutorProfile?: boolean | Prisma.TutorProfileDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tutionInfo"]>
 
 export type TutionInfoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -544,7 +544,7 @@ export type TutionInfoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   availableTime?: boolean
   startDate?: boolean
   endDate?: boolean
-  tutorProfile?: boolean | Prisma.TutorProfileDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tutionInfo"]>
 
 export type TutionInfoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -556,7 +556,7 @@ export type TutionInfoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   availableTime?: boolean
   startDate?: boolean
   endDate?: boolean
-  tutorProfile?: boolean | Prisma.TutorProfileDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tutionInfo"]>
 
 export type TutionInfoSelectScalar = {
@@ -572,19 +572,19 @@ export type TutionInfoSelectScalar = {
 
 export type TutionInfoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tutorId" | "availability" | "salary" | "subjects" | "availableTime" | "startDate" | "endDate", ExtArgs["result"]["tutionInfo"]>
 export type TutionInfoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  tutorProfile?: boolean | Prisma.TutorProfileDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type TutionInfoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  tutorProfile?: boolean | Prisma.TutorProfileDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type TutionInfoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  tutorProfile?: boolean | Prisma.TutorProfileDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $TutionInfoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "TutionInfo"
   objects: {
-    tutorProfile: Prisma.$TutorProfilePayload<ExtArgs>
+    tutor: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -989,7 +989,7 @@ readonly fields: TutionInfoFieldRefs;
  */
 export interface Prisma__TutionInfoClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  tutorProfile<T extends Prisma.TutorProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TutorProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__TutorProfileClient<runtime.Types.Result.GetResult<Prisma.$TutorProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  tutor<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

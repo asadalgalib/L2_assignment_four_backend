@@ -4,12 +4,6 @@ import { tutorControler } from "./tutor.controler";
 
 const router = Router();
 
-// * Create Tutor Profile
-router.post(
-    "/profile",
-    authorize(UserRole.TUTOR),
-    tutorControler.createTutorProfile
-)
 // * Create Tution Info
 router.post(
     "/tutioninfo",
@@ -28,6 +22,5 @@ router.post(
     authorize(UserRole.TUTOR),
     tutorControler.createCategry
 );
-
 
 export const tutorRoutes = router;

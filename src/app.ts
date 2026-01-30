@@ -16,7 +16,7 @@ app.use(cors({
 app.all("/api/auth/*splat", toNodeHandler(auth));
 
 // * Public routes
-app.use("/tutors", publicRoutes);
+app.use("/public", publicRoutes);
 
 // * Tutor routes
 app.use("/tutor", tutorRoutes);

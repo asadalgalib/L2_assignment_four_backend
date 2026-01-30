@@ -84,8 +84,3 @@ export type Reviews = Prisma.ReviewsModel
  * 
  */
 export type TutionInfo = Prisma.TutionInfoModel
-/**
- * Model TutorProfile
- * 
- */
-export type TutorProfile = Prisma.TutorProfileModel

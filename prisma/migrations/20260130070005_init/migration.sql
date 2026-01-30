@@ -2,13 +2,13 @@
 CREATE TYPE "UserRole" AS ENUM ('STUDENT', 'TUTOR', 'ADMIN');
 
 -- CreateEnum
+CREATE TYPE "GENDER" AS ENUM ('Male', 'Female');
+
+-- CreateEnum
 CREATE TYPE "UserStatus" AS ENUM ('ACTIVE', 'DEACTIVE');
 
 -- CreateEnum
 CREATE TYPE "BOOKING" AS ENUM ('CONFIRMED', 'COMPLETED', 'CANCELED');
-
--- CreateEnum
-CREATE TYPE "GENDER" AS ENUM ('Male', 'Female');
 
 -- CreateTable
 CREATE TABLE "user" (
@@ -20,6 +20,7 @@ CREATE TABLE "user" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "role" "UserRole" NOT NULL DEFAULT 'STUDENT',
+    "gender" "GENDER" NOT NULL,
     "phone" TEXT,
     "status" "UserStatus" NOT NULL DEFAULT 'ACTIVE',
 
@@ -113,6 +114,7 @@ CREATE TABLE "Reviews" (
     "studentId" TEXT NOT NULL,
     "rating" INTEGER NOT NULL,
     "text" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Reviews_pkey" PRIMARY KEY ("id")
 );
@@ -129,17 +131,6 @@ CREATE TABLE "TutionInfo" (
     "endDate" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "TutionInfo_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "TutorProfile" (
-    "id" TEXT NOT NULL,
-    "tutorId" TEXT NOT NULL,
-    "gender" "GENDER" NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "TutorProfile_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -184,12 +175,6 @@ CREATE UNIQUE INDEX "TutionInfo_tutorId_key" ON "TutionInfo"("tutorId");
 -- CreateIndex
 CREATE INDEX "TutionInfo_tutorId_idx" ON "TutionInfo"("tutorId");
 
--- CreateIndex
-CREATE UNIQUE INDEX "TutorProfile_tutorId_key" ON "TutorProfile"("tutorId");
-
--- CreateIndex
-CREATE INDEX "TutorProfile_tutorId_idx" ON "TutorProfile"("tutorId");
-
 -- AddForeignKey
 ALTER TABLE "session" ADD CONSTRAINT "session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -197,25 +182,22 @@ ALTER TABLE "session" ADD CONSTRAINT "session_userId_fkey" FOREIGN KEY ("userId"
 ALTER TABLE "account" ADD CONSTRAINT "account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Booking" ADD CONSTRAINT "Booking_tutorId_fkey" FOREIGN KEY ("tutorId") REFERENCES "TutorProfile"("tutorId") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Booking" ADD CONSTRAINT "Booking_tutorId_fkey" FOREIGN KEY ("tutorId") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Booking" ADD CONSTRAINT "Booking_studentId_fkey" FOREIGN KEY ("studentId") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Categories" ADD CONSTRAINT "Categories_tutorId_fkey" FOREIGN KEY ("tutorId") REFERENCES "TutorProfile"("tutorId") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Categories" ADD CONSTRAINT "Categories_tutorId_fkey" FOREIGN KEY ("tutorId") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Qualification" ADD CONSTRAINT "Qualification_tutorId_fkey" FOREIGN KEY ("tutorId") REFERENCES "TutorProfile"("tutorId") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Qualification" ADD CONSTRAINT "Qualification_tutorId_fkey" FOREIGN KEY ("tutorId") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Reviews" ADD CONSTRAINT "Reviews_tutorId_fkey" FOREIGN KEY ("tutorId") REFERENCES "TutorProfile"("tutorId") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Reviews" ADD CONSTRAINT "Reviews_tutorId_fkey" FOREIGN KEY ("tutorId") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Reviews" ADD CONSTRAINT "Reviews_studentId_fkey" FOREIGN KEY ("studentId") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "TutionInfo" ADD CONSTRAINT "TutionInfo_tutorId_fkey" FOREIGN KEY ("tutorId") REFERENCES "TutorProfile"("tutorId") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "TutorProfile" ADD CONSTRAINT "TutorProfile_tutorId_fkey" FOREIGN KEY ("tutorId") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "TutionInfo" ADD CONSTRAINT "TutionInfo_tutorId_fkey" FOREIGN KEY ("tutorId") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

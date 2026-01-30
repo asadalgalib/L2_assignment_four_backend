@@ -1,5 +1,5 @@
 model User {
-    id            String    @id
+    id            String    @id @default(uuid())
     name          String
     email         String
     emailVerified Boolean   @default(false)
@@ -9,12 +9,18 @@ model User {
     sessions      Session[]
     accounts      Account[]
 
-    role          UserRole      @default(STUDENT)
-    phone         String?
-    status        UserStatus    @default(ACTIVE)
-    tutorProfiles TutorProfile?
-    reviews       Reviews[]
-    booking       Booking[]
+    role            UserRole        @default(STUDENT)
+    gender          GENDER
+    phone           String?
+    status          UserStatus      @default(ACTIVE)
+    isFeatured      Boolean         @default(false)
+    tutionInfo      TutionInfo?
+    tutorBookings   Booking[]       @relation("TutorBookings")
+    studentBookings Booking[]       @relation("UserBookings")
+    categories      Categories[]
+    qualifications  Qualification[]
+    tutorReviews    Reviews[]       @relation("TutorReview")
+    studentReviews  Reviews[]       @relation("StudentReview")
 
     @@unique([email])
     @@map("user")
@@ -24,6 +30,11 @@ enum UserRole {
     STUDENT
     TUTOR
     ADMIN
+}
+
+enum GENDER {
+    Male
+    Female
 }
 
 enum UserStatus {

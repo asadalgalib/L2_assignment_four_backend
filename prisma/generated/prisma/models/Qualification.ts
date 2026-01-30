@@ -198,7 +198,7 @@ export type QualificationWhereInput = {
   gpa?: Prisma.StringFilter<"Qualification"> | string
   group?: Prisma.StringFilter<"Qualification"> | string
   institute?: Prisma.StringFilter<"Qualification"> | string
-  tutorProfile?: Prisma.XOR<Prisma.TutorProfileScalarRelationFilter, Prisma.TutorProfileWhereInput>
+  tutor?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type QualificationOrderByWithRelationInput = {
@@ -209,7 +209,7 @@ export type QualificationOrderByWithRelationInput = {
   gpa?: Prisma.SortOrder
   group?: Prisma.SortOrder
   institute?: Prisma.SortOrder
-  tutorProfile?: Prisma.TutorProfileOrderByWithRelationInput
+  tutor?: Prisma.UserOrderByWithRelationInput
 }
 
 export type QualificationWhereUniqueInput = Prisma.AtLeast<{
@@ -223,7 +223,7 @@ export type QualificationWhereUniqueInput = Prisma.AtLeast<{
   gpa?: Prisma.StringFilter<"Qualification"> | string
   group?: Prisma.StringFilter<"Qualification"> | string
   institute?: Prisma.StringFilter<"Qualification"> | string
-  tutorProfile?: Prisma.XOR<Prisma.TutorProfileScalarRelationFilter, Prisma.TutorProfileWhereInput>
+  tutor?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
 
 export type QualificationOrderByWithAggregationInput = {
@@ -259,7 +259,7 @@ export type QualificationCreateInput = {
   gpa: string
   group: string
   institute: string
-  tutorProfile: Prisma.TutorProfileCreateNestedOneWithoutQualificationInput
+  tutor: Prisma.UserCreateNestedOneWithoutQualificationsInput
 }
 
 export type QualificationUncheckedCreateInput = {
@@ -279,7 +279,7 @@ export type QualificationUpdateInput = {
   gpa?: Prisma.StringFieldUpdateOperationsInput | string
   group?: Prisma.StringFieldUpdateOperationsInput | string
   institute?: Prisma.StringFieldUpdateOperationsInput | string
-  tutorProfile?: Prisma.TutorProfileUpdateOneRequiredWithoutQualificationNestedInput
+  tutor?: Prisma.UserUpdateOneRequiredWithoutQualificationsNestedInput
 }
 
 export type QualificationUncheckedUpdateInput = {
@@ -321,6 +321,16 @@ export type QualificationUncheckedUpdateManyInput = {
   institute?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
+export type QualificationListRelationFilter = {
+  every?: Prisma.QualificationWhereInput
+  some?: Prisma.QualificationWhereInput
+  none?: Prisma.QualificationWhereInput
+}
+
+export type QualificationOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
 export type QualificationCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   tutorId?: Prisma.SortOrder
@@ -351,59 +361,49 @@ export type QualificationMinOrderByAggregateInput = {
   institute?: Prisma.SortOrder
 }
 
-export type QualificationListRelationFilter = {
-  every?: Prisma.QualificationWhereInput
-  some?: Prisma.QualificationWhereInput
-  none?: Prisma.QualificationWhereInput
-}
-
-export type QualificationOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
-}
-
-export type QualificationCreateNestedManyWithoutTutorProfileInput = {
-  create?: Prisma.XOR<Prisma.QualificationCreateWithoutTutorProfileInput, Prisma.QualificationUncheckedCreateWithoutTutorProfileInput> | Prisma.QualificationCreateWithoutTutorProfileInput[] | Prisma.QualificationUncheckedCreateWithoutTutorProfileInput[]
-  connectOrCreate?: Prisma.QualificationCreateOrConnectWithoutTutorProfileInput | Prisma.QualificationCreateOrConnectWithoutTutorProfileInput[]
-  createMany?: Prisma.QualificationCreateManyTutorProfileInputEnvelope
+export type QualificationCreateNestedManyWithoutTutorInput = {
+  create?: Prisma.XOR<Prisma.QualificationCreateWithoutTutorInput, Prisma.QualificationUncheckedCreateWithoutTutorInput> | Prisma.QualificationCreateWithoutTutorInput[] | Prisma.QualificationUncheckedCreateWithoutTutorInput[]
+  connectOrCreate?: Prisma.QualificationCreateOrConnectWithoutTutorInput | Prisma.QualificationCreateOrConnectWithoutTutorInput[]
+  createMany?: Prisma.QualificationCreateManyTutorInputEnvelope
   connect?: Prisma.QualificationWhereUniqueInput | Prisma.QualificationWhereUniqueInput[]
 }
 
-export type QualificationUncheckedCreateNestedManyWithoutTutorProfileInput = {
-  create?: Prisma.XOR<Prisma.QualificationCreateWithoutTutorProfileInput, Prisma.QualificationUncheckedCreateWithoutTutorProfileInput> | Prisma.QualificationCreateWithoutTutorProfileInput[] | Prisma.QualificationUncheckedCreateWithoutTutorProfileInput[]
-  connectOrCreate?: Prisma.QualificationCreateOrConnectWithoutTutorProfileInput | Prisma.QualificationCreateOrConnectWithoutTutorProfileInput[]
-  createMany?: Prisma.QualificationCreateManyTutorProfileInputEnvelope
+export type QualificationUncheckedCreateNestedManyWithoutTutorInput = {
+  create?: Prisma.XOR<Prisma.QualificationCreateWithoutTutorInput, Prisma.QualificationUncheckedCreateWithoutTutorInput> | Prisma.QualificationCreateWithoutTutorInput[] | Prisma.QualificationUncheckedCreateWithoutTutorInput[]
+  connectOrCreate?: Prisma.QualificationCreateOrConnectWithoutTutorInput | Prisma.QualificationCreateOrConnectWithoutTutorInput[]
+  createMany?: Prisma.QualificationCreateManyTutorInputEnvelope
   connect?: Prisma.QualificationWhereUniqueInput | Prisma.QualificationWhereUniqueInput[]
 }
 
-export type QualificationUpdateManyWithoutTutorProfileNestedInput = {
-  create?: Prisma.XOR<Prisma.QualificationCreateWithoutTutorProfileInput, Prisma.QualificationUncheckedCreateWithoutTutorProfileInput> | Prisma.QualificationCreateWithoutTutorProfileInput[] | Prisma.QualificationUncheckedCreateWithoutTutorProfileInput[]
-  connectOrCreate?: Prisma.QualificationCreateOrConnectWithoutTutorProfileInput | Prisma.QualificationCreateOrConnectWithoutTutorProfileInput[]
-  upsert?: Prisma.QualificationUpsertWithWhereUniqueWithoutTutorProfileInput | Prisma.QualificationUpsertWithWhereUniqueWithoutTutorProfileInput[]
-  createMany?: Prisma.QualificationCreateManyTutorProfileInputEnvelope
+export type QualificationUpdateManyWithoutTutorNestedInput = {
+  create?: Prisma.XOR<Prisma.QualificationCreateWithoutTutorInput, Prisma.QualificationUncheckedCreateWithoutTutorInput> | Prisma.QualificationCreateWithoutTutorInput[] | Prisma.QualificationUncheckedCreateWithoutTutorInput[]
+  connectOrCreate?: Prisma.QualificationCreateOrConnectWithoutTutorInput | Prisma.QualificationCreateOrConnectWithoutTutorInput[]
+  upsert?: Prisma.QualificationUpsertWithWhereUniqueWithoutTutorInput | Prisma.QualificationUpsertWithWhereUniqueWithoutTutorInput[]
+  createMany?: Prisma.QualificationCreateManyTutorInputEnvelope
   set?: Prisma.QualificationWhereUniqueInput | Prisma.QualificationWhereUniqueInput[]
   disconnect?: Prisma.QualificationWhereUniqueInput | Prisma.QualificationWhereUniqueInput[]
   delete?: Prisma.QualificationWhereUniqueInput | Prisma.QualificationWhereUniqueInput[]
   connect?: Prisma.QualificationWhereUniqueInput | Prisma.QualificationWhereUniqueInput[]
-  update?: Prisma.QualificationUpdateWithWhereUniqueWithoutTutorProfileInput | Prisma.QualificationUpdateWithWhereUniqueWithoutTutorProfileInput[]
-  updateMany?: Prisma.QualificationUpdateManyWithWhereWithoutTutorProfileInput | Prisma.QualificationUpdateManyWithWhereWithoutTutorProfileInput[]
+  update?: Prisma.QualificationUpdateWithWhereUniqueWithoutTutorInput | Prisma.QualificationUpdateWithWhereUniqueWithoutTutorInput[]
+  updateMany?: Prisma.QualificationUpdateManyWithWhereWithoutTutorInput | Prisma.QualificationUpdateManyWithWhereWithoutTutorInput[]
   deleteMany?: Prisma.QualificationScalarWhereInput | Prisma.QualificationScalarWhereInput[]
 }
 
-export type QualificationUncheckedUpdateManyWithoutTutorProfileNestedInput = {
-  create?: Prisma.XOR<Prisma.QualificationCreateWithoutTutorProfileInput, Prisma.QualificationUncheckedCreateWithoutTutorProfileInput> | Prisma.QualificationCreateWithoutTutorProfileInput[] | Prisma.QualificationUncheckedCreateWithoutTutorProfileInput[]
-  connectOrCreate?: Prisma.QualificationCreateOrConnectWithoutTutorProfileInput | Prisma.QualificationCreateOrConnectWithoutTutorProfileInput[]
-  upsert?: Prisma.QualificationUpsertWithWhereUniqueWithoutTutorProfileInput | Prisma.QualificationUpsertWithWhereUniqueWithoutTutorProfileInput[]
-  createMany?: Prisma.QualificationCreateManyTutorProfileInputEnvelope
+export type QualificationUncheckedUpdateManyWithoutTutorNestedInput = {
+  create?: Prisma.XOR<Prisma.QualificationCreateWithoutTutorInput, Prisma.QualificationUncheckedCreateWithoutTutorInput> | Prisma.QualificationCreateWithoutTutorInput[] | Prisma.QualificationUncheckedCreateWithoutTutorInput[]
+  connectOrCreate?: Prisma.QualificationCreateOrConnectWithoutTutorInput | Prisma.QualificationCreateOrConnectWithoutTutorInput[]
+  upsert?: Prisma.QualificationUpsertWithWhereUniqueWithoutTutorInput | Prisma.QualificationUpsertWithWhereUniqueWithoutTutorInput[]
+  createMany?: Prisma.QualificationCreateManyTutorInputEnvelope
   set?: Prisma.QualificationWhereUniqueInput | Prisma.QualificationWhereUniqueInput[]
   disconnect?: Prisma.QualificationWhereUniqueInput | Prisma.QualificationWhereUniqueInput[]
   delete?: Prisma.QualificationWhereUniqueInput | Prisma.QualificationWhereUniqueInput[]
   connect?: Prisma.QualificationWhereUniqueInput | Prisma.QualificationWhereUniqueInput[]
-  update?: Prisma.QualificationUpdateWithWhereUniqueWithoutTutorProfileInput | Prisma.QualificationUpdateWithWhereUniqueWithoutTutorProfileInput[]
-  updateMany?: Prisma.QualificationUpdateManyWithWhereWithoutTutorProfileInput | Prisma.QualificationUpdateManyWithWhereWithoutTutorProfileInput[]
+  update?: Prisma.QualificationUpdateWithWhereUniqueWithoutTutorInput | Prisma.QualificationUpdateWithWhereUniqueWithoutTutorInput[]
+  updateMany?: Prisma.QualificationUpdateManyWithWhereWithoutTutorInput | Prisma.QualificationUpdateManyWithWhereWithoutTutorInput[]
   deleteMany?: Prisma.QualificationScalarWhereInput | Prisma.QualificationScalarWhereInput[]
 }
 
-export type QualificationCreateWithoutTutorProfileInput = {
+export type QualificationCreateWithoutTutorInput = {
   id?: string
   exam: string
   year: string
@@ -412,7 +412,7 @@ export type QualificationCreateWithoutTutorProfileInput = {
   institute: string
 }
 
-export type QualificationUncheckedCreateWithoutTutorProfileInput = {
+export type QualificationUncheckedCreateWithoutTutorInput = {
   id?: string
   exam: string
   year: string
@@ -421,30 +421,30 @@ export type QualificationUncheckedCreateWithoutTutorProfileInput = {
   institute: string
 }
 
-export type QualificationCreateOrConnectWithoutTutorProfileInput = {
+export type QualificationCreateOrConnectWithoutTutorInput = {
   where: Prisma.QualificationWhereUniqueInput
-  create: Prisma.XOR<Prisma.QualificationCreateWithoutTutorProfileInput, Prisma.QualificationUncheckedCreateWithoutTutorProfileInput>
+  create: Prisma.XOR<Prisma.QualificationCreateWithoutTutorInput, Prisma.QualificationUncheckedCreateWithoutTutorInput>
 }
 
-export type QualificationCreateManyTutorProfileInputEnvelope = {
-  data: Prisma.QualificationCreateManyTutorProfileInput | Prisma.QualificationCreateManyTutorProfileInput[]
+export type QualificationCreateManyTutorInputEnvelope = {
+  data: Prisma.QualificationCreateManyTutorInput | Prisma.QualificationCreateManyTutorInput[]
   skipDuplicates?: boolean
 }
 
-export type QualificationUpsertWithWhereUniqueWithoutTutorProfileInput = {
+export type QualificationUpsertWithWhereUniqueWithoutTutorInput = {
   where: Prisma.QualificationWhereUniqueInput
-  update: Prisma.XOR<Prisma.QualificationUpdateWithoutTutorProfileInput, Prisma.QualificationUncheckedUpdateWithoutTutorProfileInput>
-  create: Prisma.XOR<Prisma.QualificationCreateWithoutTutorProfileInput, Prisma.QualificationUncheckedCreateWithoutTutorProfileInput>
+  update: Prisma.XOR<Prisma.QualificationUpdateWithoutTutorInput, Prisma.QualificationUncheckedUpdateWithoutTutorInput>
+  create: Prisma.XOR<Prisma.QualificationCreateWithoutTutorInput, Prisma.QualificationUncheckedCreateWithoutTutorInput>
 }
 
-export type QualificationUpdateWithWhereUniqueWithoutTutorProfileInput = {
+export type QualificationUpdateWithWhereUniqueWithoutTutorInput = {
   where: Prisma.QualificationWhereUniqueInput
-  data: Prisma.XOR<Prisma.QualificationUpdateWithoutTutorProfileInput, Prisma.QualificationUncheckedUpdateWithoutTutorProfileInput>
+  data: Prisma.XOR<Prisma.QualificationUpdateWithoutTutorInput, Prisma.QualificationUncheckedUpdateWithoutTutorInput>
 }
 
-export type QualificationUpdateManyWithWhereWithoutTutorProfileInput = {
+export type QualificationUpdateManyWithWhereWithoutTutorInput = {
   where: Prisma.QualificationScalarWhereInput
-  data: Prisma.XOR<Prisma.QualificationUpdateManyMutationInput, Prisma.QualificationUncheckedUpdateManyWithoutTutorProfileInput>
+  data: Prisma.XOR<Prisma.QualificationUpdateManyMutationInput, Prisma.QualificationUncheckedUpdateManyWithoutTutorInput>
 }
 
 export type QualificationScalarWhereInput = {
@@ -460,7 +460,7 @@ export type QualificationScalarWhereInput = {
   institute?: Prisma.StringFilter<"Qualification"> | string
 }
 
-export type QualificationCreateManyTutorProfileInput = {
+export type QualificationCreateManyTutorInput = {
   id?: string
   exam: string
   year: string
@@ -469,7 +469,7 @@ export type QualificationCreateManyTutorProfileInput = {
   institute: string
 }
 
-export type QualificationUpdateWithoutTutorProfileInput = {
+export type QualificationUpdateWithoutTutorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   exam?: Prisma.StringFieldUpdateOperationsInput | string
   year?: Prisma.StringFieldUpdateOperationsInput | string
@@ -478,7 +478,7 @@ export type QualificationUpdateWithoutTutorProfileInput = {
   institute?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type QualificationUncheckedUpdateWithoutTutorProfileInput = {
+export type QualificationUncheckedUpdateWithoutTutorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   exam?: Prisma.StringFieldUpdateOperationsInput | string
   year?: Prisma.StringFieldUpdateOperationsInput | string
@@ -487,7 +487,7 @@ export type QualificationUncheckedUpdateWithoutTutorProfileInput = {
   institute?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type QualificationUncheckedUpdateManyWithoutTutorProfileInput = {
+export type QualificationUncheckedUpdateManyWithoutTutorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   exam?: Prisma.StringFieldUpdateOperationsInput | string
   year?: Prisma.StringFieldUpdateOperationsInput | string
@@ -506,7 +506,7 @@ export type QualificationSelect<ExtArgs extends runtime.Types.Extensions.Interna
   gpa?: boolean
   group?: boolean
   institute?: boolean
-  tutorProfile?: boolean | Prisma.TutorProfileDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["qualification"]>
 
 export type QualificationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -517,7 +517,7 @@ export type QualificationSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   gpa?: boolean
   group?: boolean
   institute?: boolean
-  tutorProfile?: boolean | Prisma.TutorProfileDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["qualification"]>
 
 export type QualificationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -528,7 +528,7 @@ export type QualificationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   gpa?: boolean
   group?: boolean
   institute?: boolean
-  tutorProfile?: boolean | Prisma.TutorProfileDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["qualification"]>
 
 export type QualificationSelectScalar = {
@@ -543,19 +543,19 @@ export type QualificationSelectScalar = {
 
 export type QualificationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tutorId" | "exam" | "year" | "gpa" | "group" | "institute", ExtArgs["result"]["qualification"]>
 export type QualificationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  tutorProfile?: boolean | Prisma.TutorProfileDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type QualificationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  tutorProfile?: boolean | Prisma.TutorProfileDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type QualificationIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  tutorProfile?: boolean | Prisma.TutorProfileDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $QualificationPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Qualification"
   objects: {
-    tutorProfile: Prisma.$TutorProfilePayload<ExtArgs>
+    tutor: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -959,7 +959,7 @@ readonly fields: QualificationFieldRefs;
  */
 export interface Prisma__QualificationClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  tutorProfile<T extends Prisma.TutorProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TutorProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__TutorProfileClient<runtime.Types.Result.GetResult<Prisma.$TutorProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  tutor<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

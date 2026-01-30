@@ -1,11 +1,16 @@
 model Reviews {
-  id           String       @id @default(uuid())
-  tutorId      String
-  tutorProfile TutorProfile @relation(fields: [tutorId], references: [tutorId])
-  studentId    String
-  user         User         @relation(fields: [studentId], references: [id])
-  rating       Int
-  text         String       @db.Text
+  id String @id @default(uuid())
+
+  tutorId String
+  tutor   User   @relation("TutorReview", fields: [tutorId], references: [id])
+
+  studentId String
+  student   User   @relation("StudentReview", fields: [studentId], references: [id])
+
+  rating Int
+  text   String @db.Text
+
+  createdAt DateTime @default(now())
 
   @@unique([tutorId, studentId])
   @@index([tutorId])

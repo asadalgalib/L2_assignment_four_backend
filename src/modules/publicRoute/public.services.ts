@@ -24,9 +24,6 @@ const getTutor = async ({
 
     const andConditions: UserWhereInput[] = [];
     // search, category, availability, maxSalary,minSalary, Group, institute , page,skip, limit, sortBy,sortOrder
-
-
-
     if (search) {
         andConditions.push({
             OR: [
@@ -37,63 +34,46 @@ const getTutor = async ({
                     },
                 },
                 {
-                    tutorProfiles: {
+                    tutionInfo: {
                         is: {
-                            tutionInfo: {
-                                is: {
-                                    subjects: {
-                                        has: search as string,
-                                    },
-                                },
+                            subjects: {
+                                has: search as string,
                             },
                         },
                     },
                 },
                 {
-                    tutorProfiles: {
-                        is: {
-                            categories: {
-                                some: {
-                                    category: {
-                                        contains: search as string,
-                                        mode: "insensitive",
-                                    },
-                                },
+                    categories: {
+                        some: {
+                            category: {
+                                contains: search as string,
+                                mode: "insensitive",
                             },
                         },
                     },
                 },
                 {
-                    tutorProfiles: {
-                        is: {
-                            qualification: {
-                                some: {
-                                    institute: {
-                                        contains: search as string,
-                                        mode: "insensitive",
-                                    },
-                                },
-                            },
-                        },
-                    },
+                    qualifications: {
+                        some: {
+                            institute: {
+                                contains: search as string,
+                                mode: "insensitive"
+                            }
+                        }
+                    }
                 },
             ],
         })
     }
-
     if (category) {
         andConditions.push({
             OR: [
                 {
-                    tutorProfiles: {
-                        is: {
-                            categories: {
-                                some: {
-                                    category: {
-                                        contains: category as string,
-                                        mode: "insensitive"
-                                    }
-                                }
+                    categories: {
+                        some: {
+                            category: {
+                                contains: category as string,
+                                mode: "insensitive"
                             }
                         }
                     }
@@ -105,13 +85,9 @@ const getTutor = async ({
         andConditions.push({
             OR: [
                 {
-                    tutorProfiles: {
+                    tutionInfo: {
                         is: {
-                            tutionInfo: {
-                                is: {
-                                    availability: true
-                                }
-                            }
+                            availability: true
                         }
                     }
                 }
@@ -122,33 +98,15 @@ const getTutor = async ({
         andConditions.push({
             OR: [
                 {
-                    tutorProfiles: {
+                    tutionInfo: {
                         is: {
-                            tutionInfo: {
-                                is: {
-                                    availability: false
-                                }
-                            }
+                            availability: false
                         }
                     }
                 }
             ]
         })
     }
-
-    if (typeof search === "undefined" && typeof category === "undefined" && typeof available === "undefined") {
-        andConditions.push({
-            OR: [
-                {
-                    tutorProfiles: {
-                        isNot: null
-                    },
-
-                }
-            ]
-        })
-    }
-
     const result = await prisma.user.findMany({
         skip: (page - 1) * limit,
         take: limit,
@@ -161,24 +119,9 @@ const getTutor = async ({
             [sortBy]: sortOrder
         },
         include: {
-            tutorProfiles: {
-                include: {
-                    tutionInfo: true,
-                    categories: {
-                        select: {
-                            category: true
-                        }
-                    },
-                    qualification: true,
-                    reviews: {
-                        select: {
-                            rating: true,
-                            text: true
-                        }
-                    }
-                }
-            }
-
+            tutionInfo: true,
+            categories: true,
+            qualifications: true
         },
     });
 
@@ -211,29 +154,11 @@ const getTutorById = async (id: string) => {
             id: id,
             role: "TUTOR",
             status: "ACTIVE",
-            tutorProfiles: {
-                isNot: null
-            }
         },
         include: {
-            tutorProfiles: {
-                include: {
-                    tutionInfo: true,
-                    categories: {
-                        select: {
-                            category: true
-                        }
-                    },
-                    qualification: true,
-                    reviews: {
-                        select: {
-                            rating: true,
-                            text: true
-                        }
-                    }
-                }
-            }
-
+            tutionInfo: true,
+            categories: true,
+            qualifications: true
         },
     });
 
@@ -242,8 +167,27 @@ const getTutorById = async (id: string) => {
         data: result
     }
 }
+// * Get Categories
+const getCategories = async () => {
+    console.log("get category service");
+    const result = await prisma.categories.findMany({
+        select: {
+            category: true
+        },
+        distinct: ["category"],
+        orderBy: {
+            category: "asc"
+        }
+    });
+    console.log(result);
+    return {
+        success: true,
+        data: result
+    }
+}
 
 export const publicServices = {
     getTutor,
-    getTutorById
+    getTutorById,
+    getCategories
 }

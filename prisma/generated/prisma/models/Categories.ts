@@ -166,14 +166,14 @@ export type CategoriesWhereInput = {
   id?: Prisma.StringFilter<"Categories"> | string
   tutorId?: Prisma.StringFilter<"Categories"> | string
   category?: Prisma.StringFilter<"Categories"> | string
-  tutorProfile?: Prisma.XOR<Prisma.TutorProfileScalarRelationFilter, Prisma.TutorProfileWhereInput>
+  tutor?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type CategoriesOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   tutorId?: Prisma.SortOrder
   category?: Prisma.SortOrder
-  tutorProfile?: Prisma.TutorProfileOrderByWithRelationInput
+  tutor?: Prisma.UserOrderByWithRelationInput
 }
 
 export type CategoriesWhereUniqueInput = Prisma.AtLeast<{
@@ -183,7 +183,7 @@ export type CategoriesWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.CategoriesWhereInput | Prisma.CategoriesWhereInput[]
   tutorId?: Prisma.StringFilter<"Categories"> | string
   category?: Prisma.StringFilter<"Categories"> | string
-  tutorProfile?: Prisma.XOR<Prisma.TutorProfileScalarRelationFilter, Prisma.TutorProfileWhereInput>
+  tutor?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
 
 export type CategoriesOrderByWithAggregationInput = {
@@ -207,7 +207,7 @@ export type CategoriesScalarWhereWithAggregatesInput = {
 export type CategoriesCreateInput = {
   id?: string
   category: string
-  tutorProfile: Prisma.TutorProfileCreateNestedOneWithoutCategoriesInput
+  tutor: Prisma.UserCreateNestedOneWithoutCategoriesInput
 }
 
 export type CategoriesUncheckedCreateInput = {
@@ -219,7 +219,7 @@ export type CategoriesUncheckedCreateInput = {
 export type CategoriesUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
-  tutorProfile?: Prisma.TutorProfileUpdateOneRequiredWithoutCategoriesNestedInput
+  tutor?: Prisma.UserUpdateOneRequiredWithoutCategoriesNestedInput
 }
 
 export type CategoriesUncheckedUpdateInput = {
@@ -245,6 +245,16 @@ export type CategoriesUncheckedUpdateManyInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
+export type CategoriesListRelationFilter = {
+  every?: Prisma.CategoriesWhereInput
+  some?: Prisma.CategoriesWhereInput
+  none?: Prisma.CategoriesWhereInput
+}
+
+export type CategoriesOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
 export type CategoriesCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   tutorId?: Prisma.SortOrder
@@ -263,92 +273,82 @@ export type CategoriesMinOrderByAggregateInput = {
   category?: Prisma.SortOrder
 }
 
-export type CategoriesListRelationFilter = {
-  every?: Prisma.CategoriesWhereInput
-  some?: Prisma.CategoriesWhereInput
-  none?: Prisma.CategoriesWhereInput
-}
-
-export type CategoriesOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
-}
-
-export type CategoriesCreateNestedManyWithoutTutorProfileInput = {
-  create?: Prisma.XOR<Prisma.CategoriesCreateWithoutTutorProfileInput, Prisma.CategoriesUncheckedCreateWithoutTutorProfileInput> | Prisma.CategoriesCreateWithoutTutorProfileInput[] | Prisma.CategoriesUncheckedCreateWithoutTutorProfileInput[]
-  connectOrCreate?: Prisma.CategoriesCreateOrConnectWithoutTutorProfileInput | Prisma.CategoriesCreateOrConnectWithoutTutorProfileInput[]
-  createMany?: Prisma.CategoriesCreateManyTutorProfileInputEnvelope
+export type CategoriesCreateNestedManyWithoutTutorInput = {
+  create?: Prisma.XOR<Prisma.CategoriesCreateWithoutTutorInput, Prisma.CategoriesUncheckedCreateWithoutTutorInput> | Prisma.CategoriesCreateWithoutTutorInput[] | Prisma.CategoriesUncheckedCreateWithoutTutorInput[]
+  connectOrCreate?: Prisma.CategoriesCreateOrConnectWithoutTutorInput | Prisma.CategoriesCreateOrConnectWithoutTutorInput[]
+  createMany?: Prisma.CategoriesCreateManyTutorInputEnvelope
   connect?: Prisma.CategoriesWhereUniqueInput | Prisma.CategoriesWhereUniqueInput[]
 }
 
-export type CategoriesUncheckedCreateNestedManyWithoutTutorProfileInput = {
-  create?: Prisma.XOR<Prisma.CategoriesCreateWithoutTutorProfileInput, Prisma.CategoriesUncheckedCreateWithoutTutorProfileInput> | Prisma.CategoriesCreateWithoutTutorProfileInput[] | Prisma.CategoriesUncheckedCreateWithoutTutorProfileInput[]
-  connectOrCreate?: Prisma.CategoriesCreateOrConnectWithoutTutorProfileInput | Prisma.CategoriesCreateOrConnectWithoutTutorProfileInput[]
-  createMany?: Prisma.CategoriesCreateManyTutorProfileInputEnvelope
+export type CategoriesUncheckedCreateNestedManyWithoutTutorInput = {
+  create?: Prisma.XOR<Prisma.CategoriesCreateWithoutTutorInput, Prisma.CategoriesUncheckedCreateWithoutTutorInput> | Prisma.CategoriesCreateWithoutTutorInput[] | Prisma.CategoriesUncheckedCreateWithoutTutorInput[]
+  connectOrCreate?: Prisma.CategoriesCreateOrConnectWithoutTutorInput | Prisma.CategoriesCreateOrConnectWithoutTutorInput[]
+  createMany?: Prisma.CategoriesCreateManyTutorInputEnvelope
   connect?: Prisma.CategoriesWhereUniqueInput | Prisma.CategoriesWhereUniqueInput[]
 }
 
-export type CategoriesUpdateManyWithoutTutorProfileNestedInput = {
-  create?: Prisma.XOR<Prisma.CategoriesCreateWithoutTutorProfileInput, Prisma.CategoriesUncheckedCreateWithoutTutorProfileInput> | Prisma.CategoriesCreateWithoutTutorProfileInput[] | Prisma.CategoriesUncheckedCreateWithoutTutorProfileInput[]
-  connectOrCreate?: Prisma.CategoriesCreateOrConnectWithoutTutorProfileInput | Prisma.CategoriesCreateOrConnectWithoutTutorProfileInput[]
-  upsert?: Prisma.CategoriesUpsertWithWhereUniqueWithoutTutorProfileInput | Prisma.CategoriesUpsertWithWhereUniqueWithoutTutorProfileInput[]
-  createMany?: Prisma.CategoriesCreateManyTutorProfileInputEnvelope
+export type CategoriesUpdateManyWithoutTutorNestedInput = {
+  create?: Prisma.XOR<Prisma.CategoriesCreateWithoutTutorInput, Prisma.CategoriesUncheckedCreateWithoutTutorInput> | Prisma.CategoriesCreateWithoutTutorInput[] | Prisma.CategoriesUncheckedCreateWithoutTutorInput[]
+  connectOrCreate?: Prisma.CategoriesCreateOrConnectWithoutTutorInput | Prisma.CategoriesCreateOrConnectWithoutTutorInput[]
+  upsert?: Prisma.CategoriesUpsertWithWhereUniqueWithoutTutorInput | Prisma.CategoriesUpsertWithWhereUniqueWithoutTutorInput[]
+  createMany?: Prisma.CategoriesCreateManyTutorInputEnvelope
   set?: Prisma.CategoriesWhereUniqueInput | Prisma.CategoriesWhereUniqueInput[]
   disconnect?: Prisma.CategoriesWhereUniqueInput | Prisma.CategoriesWhereUniqueInput[]
   delete?: Prisma.CategoriesWhereUniqueInput | Prisma.CategoriesWhereUniqueInput[]
   connect?: Prisma.CategoriesWhereUniqueInput | Prisma.CategoriesWhereUniqueInput[]
-  update?: Prisma.CategoriesUpdateWithWhereUniqueWithoutTutorProfileInput | Prisma.CategoriesUpdateWithWhereUniqueWithoutTutorProfileInput[]
-  updateMany?: Prisma.CategoriesUpdateManyWithWhereWithoutTutorProfileInput | Prisma.CategoriesUpdateManyWithWhereWithoutTutorProfileInput[]
+  update?: Prisma.CategoriesUpdateWithWhereUniqueWithoutTutorInput | Prisma.CategoriesUpdateWithWhereUniqueWithoutTutorInput[]
+  updateMany?: Prisma.CategoriesUpdateManyWithWhereWithoutTutorInput | Prisma.CategoriesUpdateManyWithWhereWithoutTutorInput[]
   deleteMany?: Prisma.CategoriesScalarWhereInput | Prisma.CategoriesScalarWhereInput[]
 }
 
-export type CategoriesUncheckedUpdateManyWithoutTutorProfileNestedInput = {
-  create?: Prisma.XOR<Prisma.CategoriesCreateWithoutTutorProfileInput, Prisma.CategoriesUncheckedCreateWithoutTutorProfileInput> | Prisma.CategoriesCreateWithoutTutorProfileInput[] | Prisma.CategoriesUncheckedCreateWithoutTutorProfileInput[]
-  connectOrCreate?: Prisma.CategoriesCreateOrConnectWithoutTutorProfileInput | Prisma.CategoriesCreateOrConnectWithoutTutorProfileInput[]
-  upsert?: Prisma.CategoriesUpsertWithWhereUniqueWithoutTutorProfileInput | Prisma.CategoriesUpsertWithWhereUniqueWithoutTutorProfileInput[]
-  createMany?: Prisma.CategoriesCreateManyTutorProfileInputEnvelope
+export type CategoriesUncheckedUpdateManyWithoutTutorNestedInput = {
+  create?: Prisma.XOR<Prisma.CategoriesCreateWithoutTutorInput, Prisma.CategoriesUncheckedCreateWithoutTutorInput> | Prisma.CategoriesCreateWithoutTutorInput[] | Prisma.CategoriesUncheckedCreateWithoutTutorInput[]
+  connectOrCreate?: Prisma.CategoriesCreateOrConnectWithoutTutorInput | Prisma.CategoriesCreateOrConnectWithoutTutorInput[]
+  upsert?: Prisma.CategoriesUpsertWithWhereUniqueWithoutTutorInput | Prisma.CategoriesUpsertWithWhereUniqueWithoutTutorInput[]
+  createMany?: Prisma.CategoriesCreateManyTutorInputEnvelope
   set?: Prisma.CategoriesWhereUniqueInput | Prisma.CategoriesWhereUniqueInput[]
   disconnect?: Prisma.CategoriesWhereUniqueInput | Prisma.CategoriesWhereUniqueInput[]
   delete?: Prisma.CategoriesWhereUniqueInput | Prisma.CategoriesWhereUniqueInput[]
   connect?: Prisma.CategoriesWhereUniqueInput | Prisma.CategoriesWhereUniqueInput[]
-  update?: Prisma.CategoriesUpdateWithWhereUniqueWithoutTutorProfileInput | Prisma.CategoriesUpdateWithWhereUniqueWithoutTutorProfileInput[]
-  updateMany?: Prisma.CategoriesUpdateManyWithWhereWithoutTutorProfileInput | Prisma.CategoriesUpdateManyWithWhereWithoutTutorProfileInput[]
+  update?: Prisma.CategoriesUpdateWithWhereUniqueWithoutTutorInput | Prisma.CategoriesUpdateWithWhereUniqueWithoutTutorInput[]
+  updateMany?: Prisma.CategoriesUpdateManyWithWhereWithoutTutorInput | Prisma.CategoriesUpdateManyWithWhereWithoutTutorInput[]
   deleteMany?: Prisma.CategoriesScalarWhereInput | Prisma.CategoriesScalarWhereInput[]
 }
 
-export type CategoriesCreateWithoutTutorProfileInput = {
+export type CategoriesCreateWithoutTutorInput = {
   id?: string
   category: string
 }
 
-export type CategoriesUncheckedCreateWithoutTutorProfileInput = {
+export type CategoriesUncheckedCreateWithoutTutorInput = {
   id?: string
   category: string
 }
 
-export type CategoriesCreateOrConnectWithoutTutorProfileInput = {
+export type CategoriesCreateOrConnectWithoutTutorInput = {
   where: Prisma.CategoriesWhereUniqueInput
-  create: Prisma.XOR<Prisma.CategoriesCreateWithoutTutorProfileInput, Prisma.CategoriesUncheckedCreateWithoutTutorProfileInput>
+  create: Prisma.XOR<Prisma.CategoriesCreateWithoutTutorInput, Prisma.CategoriesUncheckedCreateWithoutTutorInput>
 }
 
-export type CategoriesCreateManyTutorProfileInputEnvelope = {
-  data: Prisma.CategoriesCreateManyTutorProfileInput | Prisma.CategoriesCreateManyTutorProfileInput[]
+export type CategoriesCreateManyTutorInputEnvelope = {
+  data: Prisma.CategoriesCreateManyTutorInput | Prisma.CategoriesCreateManyTutorInput[]
   skipDuplicates?: boolean
 }
 
-export type CategoriesUpsertWithWhereUniqueWithoutTutorProfileInput = {
+export type CategoriesUpsertWithWhereUniqueWithoutTutorInput = {
   where: Prisma.CategoriesWhereUniqueInput
-  update: Prisma.XOR<Prisma.CategoriesUpdateWithoutTutorProfileInput, Prisma.CategoriesUncheckedUpdateWithoutTutorProfileInput>
-  create: Prisma.XOR<Prisma.CategoriesCreateWithoutTutorProfileInput, Prisma.CategoriesUncheckedCreateWithoutTutorProfileInput>
+  update: Prisma.XOR<Prisma.CategoriesUpdateWithoutTutorInput, Prisma.CategoriesUncheckedUpdateWithoutTutorInput>
+  create: Prisma.XOR<Prisma.CategoriesCreateWithoutTutorInput, Prisma.CategoriesUncheckedCreateWithoutTutorInput>
 }
 
-export type CategoriesUpdateWithWhereUniqueWithoutTutorProfileInput = {
+export type CategoriesUpdateWithWhereUniqueWithoutTutorInput = {
   where: Prisma.CategoriesWhereUniqueInput
-  data: Prisma.XOR<Prisma.CategoriesUpdateWithoutTutorProfileInput, Prisma.CategoriesUncheckedUpdateWithoutTutorProfileInput>
+  data: Prisma.XOR<Prisma.CategoriesUpdateWithoutTutorInput, Prisma.CategoriesUncheckedUpdateWithoutTutorInput>
 }
 
-export type CategoriesUpdateManyWithWhereWithoutTutorProfileInput = {
+export type CategoriesUpdateManyWithWhereWithoutTutorInput = {
   where: Prisma.CategoriesScalarWhereInput
-  data: Prisma.XOR<Prisma.CategoriesUpdateManyMutationInput, Prisma.CategoriesUncheckedUpdateManyWithoutTutorProfileInput>
+  data: Prisma.XOR<Prisma.CategoriesUpdateManyMutationInput, Prisma.CategoriesUncheckedUpdateManyWithoutTutorInput>
 }
 
 export type CategoriesScalarWhereInput = {
@@ -360,22 +360,22 @@ export type CategoriesScalarWhereInput = {
   category?: Prisma.StringFilter<"Categories"> | string
 }
 
-export type CategoriesCreateManyTutorProfileInput = {
+export type CategoriesCreateManyTutorInput = {
   id?: string
   category: string
 }
 
-export type CategoriesUpdateWithoutTutorProfileInput = {
+export type CategoriesUpdateWithoutTutorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type CategoriesUncheckedUpdateWithoutTutorProfileInput = {
+export type CategoriesUncheckedUpdateWithoutTutorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type CategoriesUncheckedUpdateManyWithoutTutorProfileInput = {
+export type CategoriesUncheckedUpdateManyWithoutTutorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -386,21 +386,21 @@ export type CategoriesSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   id?: boolean
   tutorId?: boolean
   category?: boolean
-  tutorProfile?: boolean | Prisma.TutorProfileDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["categories"]>
 
 export type CategoriesSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   tutorId?: boolean
   category?: boolean
-  tutorProfile?: boolean | Prisma.TutorProfileDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["categories"]>
 
 export type CategoriesSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   tutorId?: boolean
   category?: boolean
-  tutorProfile?: boolean | Prisma.TutorProfileDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["categories"]>
 
 export type CategoriesSelectScalar = {
@@ -411,19 +411,19 @@ export type CategoriesSelectScalar = {
 
 export type CategoriesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tutorId" | "category", ExtArgs["result"]["categories"]>
 export type CategoriesInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  tutorProfile?: boolean | Prisma.TutorProfileDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type CategoriesIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  tutorProfile?: boolean | Prisma.TutorProfileDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type CategoriesIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  tutorProfile?: boolean | Prisma.TutorProfileDefaultArgs<ExtArgs>
+  tutor?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $CategoriesPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Categories"
   objects: {
-    tutorProfile: Prisma.$TutorProfilePayload<ExtArgs>
+    tutor: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -823,7 +823,7 @@ readonly fields: CategoriesFieldRefs;
  */
 export interface Prisma__CategoriesClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  tutorProfile<T extends Prisma.TutorProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TutorProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__TutorProfileClient<runtime.Types.Result.GetResult<Prisma.$TutorProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  tutor<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
