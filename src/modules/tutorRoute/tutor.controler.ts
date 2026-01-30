@@ -17,6 +17,20 @@ const createTutionInfo = async (req: Request, res: Response) => {
         })
     }
 }
+// * Update Tution Info
+const updateTutionInfo = async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id as string
+        const { availability, salary, subjects, availableTime, startDate, endDate } = req.body;
+        const result = await tutorServices.updateTutionInfo({ id, availability, salary, subjects, availableTime, startDate, endDate })
+        return res.status(201).json(result)
+    } catch (error: any) {
+        return res.status(400).json({
+            message: "Something went wrong",
+            error: error
+        })
+    }
+}
 // * Create Qualifications
 const createQualification = async (req: Request, res: Response) => {
     try {
@@ -32,27 +46,68 @@ const createQualification = async (req: Request, res: Response) => {
         })
     }
 }
+// * Update Qualifications
+const updateQualification = async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id as string;
+        const { exam, year, gpa, group, institute } = req.body;
+        const result = await tutorServices.updateQualification({ id, exam, year, gpa, group, institute });
+        return res.status(201).json(result)
+    } catch (error: any) {
+        return res.status(400).json({
+            message: "Something went wrong",
+            error: error
+        })
+    }
+}
+// * Delete Qualifications 
+const deleteQualification = async (req: Request, res: Response) => {
+    try {
+        const id = req.params?.id as string;
+        const result = await tutorServices.deleteQualification(id);
+        return res.status(200).json(result)
+    } catch (error: any) {
+        return res.status(400).json({
+            message: "Something went wrong",
+            error: error
+        })
+    }
+}
 // * Create Category 
-const createCategry = async (req: Request, res: Response) => {
+const createCategory = async (req: Request, res: Response) => {
     try {
         const tutorId = req.user?.id as string;
         const { category } = req.body;
         console.log(tutorId, req.body);
-        const result = await tutorServices.createCategry({ tutorId, category });
+        const result = await tutorServices.createCategory({ tutorId, category });
         return res.status(201).json(result)
     } catch (error: any) {
-        console.error("PRISMA ERROR 👉", error);
-
         return res.status(400).json({
-            message: error.message,
-            code: error.code,
-            meta: error.meta
+            message: "Something went wrong",
+            error: error
+        })
+    }
+}
+// * Delete Category 
+const deleteCategory = async (req: Request, res: Response) => {
+    try {
+        const id = req.params?.id as string;
+        const result = await tutorServices.deleteCategory(id);
+        return res.status(200).json(result)
+    } catch (error: any) {
+        return res.status(400).json({
+            message: "Something went wrong",
+            error: error
         })
     }
 }
 
 export const tutorControler = {
     createTutionInfo,
+    updateTutionInfo,
     createQualification,
-    createCategry
+    updateQualification,
+    deleteQualification,
+    createCategory,
+    deleteCategory
 }
