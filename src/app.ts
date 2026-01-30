@@ -4,6 +4,7 @@ import { auth } from './lib/auth';
 import { toNodeHandler } from "better-auth/node";
 import { publicRoutes } from './modules/publicRoute/public.route';
 import { tutorRoutes } from './modules/tutorRoute/tutor.route';
+import { bookingRoutes } from './modules/bookingRoute/booking.route';
 
 const app = express();
 app.use(express.json());
@@ -18,6 +19,9 @@ app.all("/api/auth/*splat", toNodeHandler(auth));
 // * Public routes
 app.use("/public", publicRoutes);
 
+// * Booking routes
+app.use("/booking", bookingRoutes)
+
 // * Tutor routes
 app.use("/tutor", tutorRoutes);
 
@@ -25,5 +29,6 @@ app.use("/tutor", tutorRoutes);
 app.get("/", (req, res) => {
     res.send("app is running")
 })
+
 // * Export app
 export default app;

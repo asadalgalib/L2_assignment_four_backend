@@ -40,8 +40,8 @@ export type TutionInfoMinAggregateOutputType = {
   availability: boolean | null
   salary: number | null
   availableTime: string | null
-  startDate: Date | null
-  endDate: Date | null
+  startDate: string | null
+  endDate: string | null
 }
 
 export type TutionInfoMaxAggregateOutputType = {
@@ -50,8 +50,8 @@ export type TutionInfoMaxAggregateOutputType = {
   availability: boolean | null
   salary: number | null
   availableTime: string | null
-  startDate: Date | null
-  endDate: Date | null
+  startDate: string | null
+  endDate: string | null
 }
 
 export type TutionInfoCountAggregateOutputType = {
@@ -200,8 +200,8 @@ export type TutionInfoGroupByOutputType = {
   salary: number
   subjects: string[]
   availableTime: string
-  startDate: Date
-  endDate: Date
+  startDate: string
+  endDate: string
   _count: TutionInfoCountAggregateOutputType | null
   _avg: TutionInfoAvgAggregateOutputType | null
   _sum: TutionInfoSumAggregateOutputType | null
@@ -234,8 +234,8 @@ export type TutionInfoWhereInput = {
   salary?: Prisma.IntFilter<"TutionInfo"> | number
   subjects?: Prisma.StringNullableListFilter<"TutionInfo">
   availableTime?: Prisma.StringFilter<"TutionInfo"> | string
-  startDate?: Prisma.DateTimeFilter<"TutionInfo"> | Date | string
-  endDate?: Prisma.DateTimeFilter<"TutionInfo"> | Date | string
+  startDate?: Prisma.StringFilter<"TutionInfo"> | string
+  endDate?: Prisma.StringFilter<"TutionInfo"> | string
   tutor?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
@@ -261,8 +261,8 @@ export type TutionInfoWhereUniqueInput = Prisma.AtLeast<{
   salary?: Prisma.IntFilter<"TutionInfo"> | number
   subjects?: Prisma.StringNullableListFilter<"TutionInfo">
   availableTime?: Prisma.StringFilter<"TutionInfo"> | string
-  startDate?: Prisma.DateTimeFilter<"TutionInfo"> | Date | string
-  endDate?: Prisma.DateTimeFilter<"TutionInfo"> | Date | string
+  startDate?: Prisma.StringFilter<"TutionInfo"> | string
+  endDate?: Prisma.StringFilter<"TutionInfo"> | string
   tutor?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id" | "tutorId">
 
@@ -292,8 +292,8 @@ export type TutionInfoScalarWhereWithAggregatesInput = {
   salary?: Prisma.IntWithAggregatesFilter<"TutionInfo"> | number
   subjects?: Prisma.StringNullableListFilter<"TutionInfo">
   availableTime?: Prisma.StringWithAggregatesFilter<"TutionInfo"> | string
-  startDate?: Prisma.DateTimeWithAggregatesFilter<"TutionInfo"> | Date | string
-  endDate?: Prisma.DateTimeWithAggregatesFilter<"TutionInfo"> | Date | string
+  startDate?: Prisma.StringWithAggregatesFilter<"TutionInfo"> | string
+  endDate?: Prisma.StringWithAggregatesFilter<"TutionInfo"> | string
 }
 
 export type TutionInfoCreateInput = {
@@ -302,8 +302,8 @@ export type TutionInfoCreateInput = {
   salary: number
   subjects?: Prisma.TutionInfoCreatesubjectsInput | string[]
   availableTime: string
-  startDate: Date | string
-  endDate: Date | string
+  startDate: string
+  endDate: string
   tutor: Prisma.UserCreateNestedOneWithoutTutionInfoInput
 }
 
@@ -314,8 +314,8 @@ export type TutionInfoUncheckedCreateInput = {
   salary: number
   subjects?: Prisma.TutionInfoCreatesubjectsInput | string[]
   availableTime: string
-  startDate: Date | string
-  endDate: Date | string
+  startDate: string
+  endDate: string
 }
 
 export type TutionInfoUpdateInput = {
@@ -324,8 +324,8 @@ export type TutionInfoUpdateInput = {
   salary?: Prisma.IntFieldUpdateOperationsInput | number
   subjects?: Prisma.TutionInfoUpdatesubjectsInput | string[]
   availableTime?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startDate?: Prisma.StringFieldUpdateOperationsInput | string
+  endDate?: Prisma.StringFieldUpdateOperationsInput | string
   tutor?: Prisma.UserUpdateOneRequiredWithoutTutionInfoNestedInput
 }
 
@@ -336,8 +336,8 @@ export type TutionInfoUncheckedUpdateInput = {
   salary?: Prisma.IntFieldUpdateOperationsInput | number
   subjects?: Prisma.TutionInfoUpdatesubjectsInput | string[]
   availableTime?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startDate?: Prisma.StringFieldUpdateOperationsInput | string
+  endDate?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type TutionInfoCreateManyInput = {
@@ -347,8 +347,8 @@ export type TutionInfoCreateManyInput = {
   salary: number
   subjects?: Prisma.TutionInfoCreatesubjectsInput | string[]
   availableTime: string
-  startDate: Date | string
-  endDate: Date | string
+  startDate: string
+  endDate: string
 }
 
 export type TutionInfoUpdateManyMutationInput = {
@@ -357,8 +357,8 @@ export type TutionInfoUpdateManyMutationInput = {
   salary?: Prisma.IntFieldUpdateOperationsInput | number
   subjects?: Prisma.TutionInfoUpdatesubjectsInput | string[]
   availableTime?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startDate?: Prisma.StringFieldUpdateOperationsInput | string
+  endDate?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type TutionInfoUncheckedUpdateManyInput = {
@@ -368,8 +368,8 @@ export type TutionInfoUncheckedUpdateManyInput = {
   salary?: Prisma.IntFieldUpdateOperationsInput | number
   subjects?: Prisma.TutionInfoUpdatesubjectsInput | string[]
   availableTime?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startDate?: Prisma.StringFieldUpdateOperationsInput | string
+  endDate?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type TutionInfoNullableScalarRelationFilter = {
@@ -471,8 +471,8 @@ export type TutionInfoCreateWithoutTutorInput = {
   salary: number
   subjects?: Prisma.TutionInfoCreatesubjectsInput | string[]
   availableTime: string
-  startDate: Date | string
-  endDate: Date | string
+  startDate: string
+  endDate: string
 }
 
 export type TutionInfoUncheckedCreateWithoutTutorInput = {
@@ -481,8 +481,8 @@ export type TutionInfoUncheckedCreateWithoutTutorInput = {
   salary: number
   subjects?: Prisma.TutionInfoCreatesubjectsInput | string[]
   availableTime: string
-  startDate: Date | string
-  endDate: Date | string
+  startDate: string
+  endDate: string
 }
 
 export type TutionInfoCreateOrConnectWithoutTutorInput = {
@@ -507,8 +507,8 @@ export type TutionInfoUpdateWithoutTutorInput = {
   salary?: Prisma.IntFieldUpdateOperationsInput | number
   subjects?: Prisma.TutionInfoUpdatesubjectsInput | string[]
   availableTime?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startDate?: Prisma.StringFieldUpdateOperationsInput | string
+  endDate?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type TutionInfoUncheckedUpdateWithoutTutorInput = {
@@ -517,8 +517,8 @@ export type TutionInfoUncheckedUpdateWithoutTutorInput = {
   salary?: Prisma.IntFieldUpdateOperationsInput | number
   subjects?: Prisma.TutionInfoUpdatesubjectsInput | string[]
   availableTime?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startDate?: Prisma.StringFieldUpdateOperationsInput | string
+  endDate?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -593,8 +593,8 @@ export type $TutionInfoPayload<ExtArgs extends runtime.Types.Extensions.Internal
     salary: number
     subjects: string[]
     availableTime: string
-    startDate: Date
-    endDate: Date
+    startDate: string
+    endDate: string
   }, ExtArgs["result"]["tutionInfo"]>
   composites: {}
 }
@@ -1025,8 +1025,8 @@ export interface TutionInfoFieldRefs {
   readonly salary: Prisma.FieldRef<"TutionInfo", 'Int'>
   readonly subjects: Prisma.FieldRef<"TutionInfo", 'String[]'>
   readonly availableTime: Prisma.FieldRef<"TutionInfo", 'String'>
-  readonly startDate: Prisma.FieldRef<"TutionInfo", 'DateTime'>
-  readonly endDate: Prisma.FieldRef<"TutionInfo", 'DateTime'>
+  readonly startDate: Prisma.FieldRef<"TutionInfo", 'String'>
+  readonly endDate: Prisma.FieldRef<"TutionInfo", 'String'>
 }
     
 
