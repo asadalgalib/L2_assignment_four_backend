@@ -1,13 +1,14 @@
 model Booking {
-  id          String  @id @default(uuid())
+  id          String    @id @default(uuid())
   tutorId     String
-  tutor       User    @relation("TutorBookings", fields: [tutorId], references: [id])
+  tutor       User      @relation("TutorBookings", fields: [tutorId], references: [id])
   studentId   String
-  user        User    @relation("UserBookings", fields: [studentId], references: [id])
+  user        User      @relation("UserBookings", fields: [studentId], references: [id])
   start_date  String
   end_date    String
   total_price Int
-  status      BOOKING @default(CONFIRMED)
+  status      BOOKING   @default(CONFIRMED)
+  reviews     Reviews[]
 
   @@index([tutorId])
   @@index([studentId])

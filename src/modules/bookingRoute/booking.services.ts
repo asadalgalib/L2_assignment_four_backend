@@ -41,6 +41,7 @@ const createBooking = async ({
 // * Get Bookings
 const getAllBookings = async (req: Request) => {
     const user = req.user;
+    console.log(user?.role);
     if (!user) throw Error("You are not authorized");
     let result;
     if (user.role === "ADMIN") {
