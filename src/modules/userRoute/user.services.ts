@@ -1,10 +1,79 @@
 import { User, UserStatus } from "../../../prisma/generated/prisma/client";
+import { UserWhereInput } from "../../../prisma/generated/prisma/models";
 import { prisma } from "../../lib/prisma"
+import { UserRole } from "../../middleware/authorize";
 
 // * Get all user
-const getUser = async () => {
+const getUser = async ({
+    isActive,
+    isFeatured,
+    isTutor,
+    isStudent
+}: {
+    isActive: string | undefined;
+    isFeatured: string | undefined;
+    isTutor: string | undefined;
+    isStudent: string | undefined
+}) => {
     console.log("get all");
-    const result = await prisma.user.findMany()
+    const andConditions: UserWhereInput[] = [];
+    console.log(isActive);
+
+    if (isActive === "true") {
+        andConditions.push({
+            OR: [
+                {
+                    status: UserStatus.ACTIVE
+                }
+            ]
+        })
+    }
+    if (isActive === "false") {
+        andConditions.push({
+            OR: [
+                {
+                    status: UserStatus.DEACTIVE
+                }
+            ]
+        })
+    }
+    if (isFeatured === "true") {
+        andConditions.push({
+            OR: [
+                {
+                    isFeatured: true
+                }
+            ]
+        })
+    }
+    if (isTutor === "true") {
+        andConditions.push({
+            OR: [
+                {
+                    role: UserRole.TUTOR
+                }
+            ]
+        })
+    }
+    if (isStudent === "true") {
+        andConditions.push({
+            OR: [
+                {
+                    role: UserRole.STUDENT
+                }
+            ]
+        })
+    }
+
+    const result = await prisma.user.findMany({
+        where: {
+            AND: andConditions
+        },
+        orderBy: {
+            role: "desc"
+        }
+    })
+
     return {
         success: true,
         data: result

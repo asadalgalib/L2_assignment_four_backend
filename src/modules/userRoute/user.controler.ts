@@ -6,7 +6,11 @@ import { UserRole } from "../../middleware/authorize";
 const getUser = async (req: Request, res: Response) => {
     try {
         console.log("get all");
-        const result = await userServices.getUser();
+        const isActive = req.query.isActive as string | undefined
+        const isFeatured = req.query.isFeatured as string | undefined
+        const isTutor = req.query.isTutor as string | undefined
+        const isStudent = req.query.isTutor as string | undefined
+        const result = await userServices.getUser({ isActive, isFeatured, isTutor, isStudent });
         return res.status(200).json(result)
     } catch (error: any) {
         return res.status(400).json({

@@ -7,6 +7,7 @@ import { tutorRoutes } from './modules/tutorRoute/tutor.route';
 import { bookingRoutes } from './modules/bookingRoute/booking.route';
 import { userRoutes } from './modules/userRoute/user.route';
 import { reviewRoutes } from './modules/reviewRoute/review.route';
+import { statsRoutes } from './modules/statsRoute/stats.route';
 
 const app = express();
 app.use(express.json());
@@ -32,6 +33,9 @@ app.use("/tutor", tutorRoutes);
 
 // * Review routes
 app.use("/review", reviewRoutes)
+
+// * Stats routes
+app.use("/stats", statsRoutes)
 
 // * Default route
 app.get("/", (req, res) => {
