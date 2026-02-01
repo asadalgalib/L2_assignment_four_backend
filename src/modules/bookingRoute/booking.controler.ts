@@ -1,18 +1,15 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { bookingServices } from "./booking.services";
 
 // * Create booking
-const createBooking = async (req: Request, res: Response) => {
+const createBooking = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const studentId = req.user?.id as string
         const { tutorId, start_date, end_date } = req.body;
         const result = await bookingServices.createBooking({ tutorId, studentId, start_date, end_date });
         return res.status(201).json(result)
     } catch (error: any) {
-        return res.status(400).json({
-            message: "Something went wrong",
-            error: error
-        })
+        next(error);
     }
 }
 
