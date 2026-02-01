@@ -128,7 +128,6 @@ const deleteQualification = async (id: string) => {
 
 // * Add Category
 const addCategory = async ({ tutorId, categoryId }: { tutorId: string, categoryId: string }) => {
-    console.log("tutor category");
     const result = await prisma.tutorCategories.create({
         data: {
             tutorId,
@@ -142,7 +141,6 @@ const addCategory = async ({ tutorId, categoryId }: { tutorId: string, categoryI
 }
 // * Delete Category
 const deleteCategory = async ({ tutorId, categoryId }: { tutorId: string, categoryId: string }) => {
-    console.log("Delete category");
     const result = await prisma.tutorCategories.delete({
         where: {
             tutorId_categoryId: {

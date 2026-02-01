@@ -13,18 +13,22 @@ const createBooking = async ({
     start_date: string,
     end_date: string;
 }) => {
-    const tutor = await prisma.tutionInfo.findUnique({
+    const tutionInfo = await prisma.tutionInfo.findUnique({
         where: {
             tutorId: tutorId
         }
     });
+    if (!tutionInfo?.availability) {
+        return {
+            message: "Tutor is not available at this moment"
+        }
+    }
     // * Get Total Day & Total Price
     const startDate = new Date(start_date);
     const endDate = new Date(end_date);
     const diffTime = endDate.getTime() - startDate.getTime();
     const totalDay = diffTime / (1000 * 60 * 60 * 24);
-    const total_price = (Number(tutor?.salary) * Number(totalDay));
-
+    const total_price = (Number(tutionInfo?.salary) * Number(totalDay));
     const result = await prisma.booking.create({
         data: {
             tutorId, studentId, start_date, end_date, total_price

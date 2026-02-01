@@ -13,4 +13,5 @@ model Reviews {
   @@unique([tutorId, studentId])
   @@index([tutorId])
   @@index([studentId])
+  @@map("reviews")
 }

@@ -5,7 +5,8 @@ model TutorCategories {
     categoryId String
     category   Categories @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 
+    @@unique([tutorId, categoryId])
     @@index([tutorId, categoryId])
-    @@unique([tutorId,categoryId])
     @@index([tutorId])
+    @@map("tutorCategories")
 }

@@ -9,4 +9,5 @@ model Qualification {
   institute String @db.Text
 
   @@index([tutorId])
+  @@map("qualification")
 }

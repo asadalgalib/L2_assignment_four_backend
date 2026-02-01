@@ -62,9 +62,9 @@ const getReview = async () => {
         orderBy: {
             rating: "desc"
         },
-        select: {
-            rating: true,
-            text: true
+        include: {
+            tutor: true,
+            student: true
         }
     })
     return {

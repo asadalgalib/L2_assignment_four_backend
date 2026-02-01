@@ -10,4 +10,5 @@ model TutionInfo {
   endDate       String
 
   @@index([tutorId])
+  @@map("tutionInfo")
 }

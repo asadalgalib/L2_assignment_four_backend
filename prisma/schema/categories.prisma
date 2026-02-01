@@ -2,4 +2,6 @@ model Categories {
     id              String            @id @default(uuid())
     category        String            @db.Text
     tutorCategories TutorCategories[]
+
+    @@map("categories")
 }

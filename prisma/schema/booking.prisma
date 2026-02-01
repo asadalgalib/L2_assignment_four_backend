@@ -12,6 +12,7 @@ model Booking {
 
   @@index([tutorId])
   @@index([studentId])
+  @@map("booking")
 }
 
 enum BOOKING {
