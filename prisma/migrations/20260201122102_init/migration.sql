@@ -23,6 +23,7 @@ CREATE TABLE "user" (
     "gender" "GENDER" NOT NULL,
     "phone" TEXT,
     "status" "UserStatus" NOT NULL DEFAULT 'ACTIVE',
+    "isFeatured" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "user_pkey" PRIMARY KEY ("id")
 );
@@ -112,6 +113,7 @@ CREATE TABLE "Reviews" (
     "id" TEXT NOT NULL,
     "tutorId" TEXT NOT NULL,
     "studentId" TEXT NOT NULL,
+    "bookingId" TEXT NOT NULL,
     "rating" INTEGER NOT NULL,
     "text" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -127,8 +129,8 @@ CREATE TABLE "TutionInfo" (
     "salary" INTEGER NOT NULL,
     "subjects" TEXT[],
     "availableTime" TEXT NOT NULL,
-    "startDate" TIMESTAMP(3) NOT NULL,
-    "endDate" TIMESTAMP(3) NOT NULL,
+    "startDate" TEXT NOT NULL,
+    "endDate" TEXT NOT NULL,
 
     CONSTRAINT "TutionInfo_pkey" PRIMARY KEY ("id")
 );
@@ -198,6 +200,9 @@ ALTER TABLE "Reviews" ADD CONSTRAINT "Reviews_tutorId_fkey" FOREIGN KEY ("tutorI
 
 -- AddForeignKey
 ALTER TABLE "Reviews" ADD CONSTRAINT "Reviews_studentId_fkey" FOREIGN KEY ("studentId") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Reviews" ADD CONSTRAINT "Reviews_bookingId_fkey" FOREIGN KEY ("bookingId") REFERENCES "Booking"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "TutionInfo" ADD CONSTRAINT "TutionInfo_tutorId_fkey" FOREIGN KEY ("tutorId") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
