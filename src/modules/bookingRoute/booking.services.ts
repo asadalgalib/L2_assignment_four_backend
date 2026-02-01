@@ -24,7 +24,6 @@ const createBooking = async ({
     const diffTime = endDate.getTime() - startDate.getTime();
     const totalDay = diffTime / (1000 * 60 * 60 * 24);
     const total_price = (Number(tutor?.salary) * Number(totalDay));
-    console.log(totalDay, total_price);
 
     const result = await prisma.booking.create({
         data: {
@@ -41,7 +40,7 @@ const createBooking = async ({
 // * Get Bookings
 const getAllBookings = async (req: Request) => {
     const user = req.user;
-    console.log(user?.role);
+
     if (!user) throw Error("You are not authorized");
     let result;
     if (user.role === "ADMIN") {

@@ -30,7 +30,6 @@ const createQualification = async (req: Request, res: Response, next: NextFuncti
     try {
         const tutorId = req.user?.id as string;
         const { exam, year, gpa, group, institute } = req.body;
-        console.log(tutorId, req.body);
         const result = await tutorServices.createQualification({ tutorId, exam, year, gpa, group, institute });
         return res.status(201).json(result)
     } catch (error: any) {
@@ -63,7 +62,6 @@ const createCategory = async (req: Request, res: Response, next: NextFunction) =
     try {
         const tutorId = req.user?.id as string;
         const { category } = req.body;
-        console.log(tutorId, req.body);
         const result = await tutorServices.createCategory({ tutorId, category });
         return res.status(201).json(result)
     } catch (error: any) {

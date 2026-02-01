@@ -169,7 +169,6 @@ const getTutorById = async (id: string) => {
 }
 // * Get Categories
 const getCategories = async () => {
-    console.log("get category service");
     const result = await prisma.categories.findMany({
         select: {
             category: true
@@ -179,7 +178,6 @@ const getCategories = async () => {
             category: "asc"
         }
     });
-    console.log(result);
     return {
         success: true,
         data: result

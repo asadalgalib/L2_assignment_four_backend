@@ -15,9 +15,7 @@ const getUser = async ({
     isTutor: string | undefined;
     isStudent: string | undefined
 }) => {
-    console.log("get all");
     const andConditions: UserWhereInput[] = [];
-    console.log(isActive);
 
     if (isActive === "true") {
         andConditions.push({
@@ -100,7 +98,6 @@ const updateUser = async (id: string, status: UserStatus, isFeatured: boolean) =
 
 // * Get current user
 const getCurrentUser = async (id: string) => {
-    console.log("get current");
     const result = await prisma.user.findUnique({
         where: {
             id

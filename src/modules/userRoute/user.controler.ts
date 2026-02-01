@@ -5,7 +5,6 @@ import { UserRole } from "../../middleware/authorize";
 // * Get user
 const getUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        console.log("get all");
         const isActive = req.query.isActive as string | undefined
         const isFeatured = req.query.isFeatured as string | undefined
         const isTutor = req.query.isTutor as string | undefined
@@ -19,7 +18,6 @@ const getUser = async (req: Request, res: Response, next: NextFunction) => {
 // * Update User
 const updateUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        console.log("update user from 21");
         const id = req.params?.id as string
         const { status, isFeatured } = req.body
         const result = await userServices.updateUser(id, status, isFeatured);
@@ -32,7 +30,6 @@ const updateUser = async (req: Request, res: Response, next: NextFunction) => {
 // * Get current User
 const getCurrentUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        console.log("get current");
         const id = req.user?.id as string
         const result = await userServices.getCurrentUser(id);
         return res.status(200).json(result)
@@ -43,10 +40,8 @@ const getCurrentUser = async (req: Request, res: Response, next: NextFunction) =
 // * Update current user
 const currentUserUpdate = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        console.log("update current user");
         const id = req.user?.id as string
         const isAdmin = req.user?.role === UserRole.ADMIN
-        console.log(id, isAdmin);
         const result = await userServices.updateCurrentUser(id, isAdmin, req.body);
         return res.status(200).json(result)
     } catch (error: any) {

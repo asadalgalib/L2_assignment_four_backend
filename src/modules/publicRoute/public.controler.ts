@@ -9,9 +9,7 @@ const getTutor = async (req: Request, res: Response, next: NextFunction) => {
         const category = req.query.category as string | undefined;
         const available = req.query.available as string | undefined;
         const { page, limit, skip, sortBy, sortOrder } = paginationSortingHelper(req.query);
-        console.log({
-            search, category, available, page, limit, skip, sortBy, sortOrder
-        });
+       
         const result = await publicServices.getTutor({
             search, category, available, page, limit, skip, sortBy, sortOrder
         });

@@ -120,7 +120,6 @@ const deleteQualification = async (id: string) => {
             id
         }
     })
-    console.log(result);
     return {
         success: true,
         data: result
@@ -146,7 +145,6 @@ const deleteCategory = async (id: string) => {
             id
         }
     })
-    console.log(result);
     return {
         success: true,
         data: result
