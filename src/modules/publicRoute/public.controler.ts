@@ -1,9 +1,9 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { publicServices } from "./public.services";
 import paginationSortingHelper from "../../helper/paginationSortingHelper";
 
 // * Get Tutor
-const getTutor = async (req: Request, res: Response) => {
+const getTutor = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const search = req.query.search as string | undefined;
         const category = req.query.category as string | undefined;
@@ -17,36 +17,27 @@ const getTutor = async (req: Request, res: Response) => {
         });
         return res.status(200).json(result)
     } catch (error: any) {
-        return res.status(400).json({
-            message: "Something went wrong",
-            error: error
-        })
+        next(error)
     }
 }
 
 // * Get Tutor by Id
-const getTutorById = async (req: Request, res: Response) => {
+const getTutorById = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { id } = req.params;
         const result = await publicServices.getTutorById(id as string);
         return res.status(200).json(result)
     } catch (error: any) {
-        return res.status(400).json({
-            message: "Something went wrong",
-            error: error
-        })
+        next(error)
     }
 }
 // * Get Categories
-const getCategories = async (req: Request, res: Response) => {
+const getCategories = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const result = await publicServices.getCategories();
         return res.status(200).json(result)
     } catch (error: any) {
-        return res.status(400).json({
-            message: "Something went wrong",
-            error: error
-        })
+        next(error)
     }
 }
 

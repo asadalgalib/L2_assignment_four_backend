@@ -14,41 +14,32 @@ const createBooking = async (req: Request, res: Response, next: NextFunction) =>
 }
 
 // * Get Bookings
-const getAllBookings = async (req: Request, res: Response) => {
+const getAllBookings = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const result = await bookingServices.getAllBookings(req);
         return res.status(200).json(result)
     } catch (error: any) {
-        return res.status(400).json({
-            message: "Something went wrong",
-            error: error
-        })
+        next(error);
     }
 }
 // * Get Booking by id 
-const getBookingById = async (req: Request, res: Response) => {
+const getBookingById = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { id } = req.params
         const result = await bookingServices.getBookingById(id as string);
         return res.status(200).json(result)
     } catch (error: any) {
-        return res.status(400).json({
-            message: "Something went wrong",
-            error: error
-        })
+        next(error);
     }
 }
 
 // * Update Booking
-const updateBooking = async (req: Request, res: Response) => {
+const updateBooking = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const result = await bookingServices.updateBooking(req);
         return res.status(201).json(result)
     } catch (error: any) {
-        return res.status(400).json({
-            message: "Something went wrong",
-            error: error
-        })
+        next(error);
     }
 }
 export const bookingControler = {
