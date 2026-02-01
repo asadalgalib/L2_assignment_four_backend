@@ -1,9 +1,9 @@
 model Booking {
   id          String    @id @default(uuid())
   tutorId     String
-  tutor       User      @relation("TutorBookings", fields: [tutorId], references: [id])
+  tutor       User      @relation("TutorBookings", fields: [tutorId], references: [id], onDelete: Cascade)
   studentId   String
-  user        User      @relation("UserBookings", fields: [studentId], references: [id])
+  user        User      @relation("UserBookings", fields: [studentId], references: [id], onDelete: Cascade)
   start_date  String
   end_date    String
   total_price Int

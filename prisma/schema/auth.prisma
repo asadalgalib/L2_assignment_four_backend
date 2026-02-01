@@ -9,18 +9,19 @@ model User {
     sessions      Session[]
     accounts      Account[]
 
-    role            UserRole        @default(STUDENT)
-    gender          GENDER
-    phone           String?
-    status          UserStatus      @default(ACTIVE)
-    isFeatured      Boolean         @default(false)
+    role       UserRole   @default(STUDENT)
+    gender     GENDER     @default(NA)
+    phone      String?
+    status     UserStatus @default(ACTIVE)
+    isFeatured Boolean    @default(false)
+
     tutionInfo      TutionInfo?
-    tutorBookings   Booking[]       @relation("TutorBookings")
-    studentBookings Booking[]       @relation("UserBookings")
-    categories      Categories[]
+    tutorBookings   Booking[]         @relation("TutorBookings")
+    studentBookings Booking[]         @relation("UserBookings")
     qualifications  Qualification[]
-    tutorReviews    Reviews[]       @relation("TutorReview")
-    studentReviews  Reviews[]       @relation("StudentReview")
+    tutorReviews    Reviews[]         @relation("TutorReview")
+    studentReviews  Reviews[]         @relation("StudentReview")
+    tutorCategories TutorCategories[]
 
     @@unique([email])
     @@map("user")
@@ -35,6 +36,7 @@ enum UserRole {
 enum GENDER {
     Male
     Female
+    NA
 }
 
 enum UserStatus {

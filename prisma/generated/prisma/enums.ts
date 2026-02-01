@@ -20,7 +20,8 @@ export type UserRole = (typeof UserRole)[keyof typeof UserRole]
 
 export const GENDER = {
   Male: 'Male',
-  Female: 'Female'
+  Female: 'Female',
+  NA: 'NA'
 } as const
 
 export type GENDER = (typeof GENDER)[keyof typeof GENDER]

@@ -392,7 +392,8 @@ export const ModelName = {
   Categories: 'Categories',
   Qualification: 'Qualification',
   Reviews: 'Reviews',
-  TutionInfo: 'TutionInfo'
+  TutionInfo: 'TutionInfo',
+  TutorCategories: 'TutorCategories'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -408,7 +409,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "booking" | "categories" | "qualification" | "reviews" | "tutionInfo"
+    modelProps: "user" | "session" | "account" | "verification" | "booking" | "categories" | "qualification" | "reviews" | "tutionInfo" | "tutorCategories"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1078,6 +1079,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    TutorCategories: {
+      payload: Prisma.$TutorCategoriesPayload<ExtArgs>
+      fields: Prisma.TutorCategoriesFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TutorCategoriesFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TutorCategoriesPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TutorCategoriesFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TutorCategoriesPayload>
+        }
+        findFirst: {
+          args: Prisma.TutorCategoriesFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TutorCategoriesPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TutorCategoriesFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TutorCategoriesPayload>
+        }
+        findMany: {
+          args: Prisma.TutorCategoriesFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TutorCategoriesPayload>[]
+        }
+        create: {
+          args: Prisma.TutorCategoriesCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TutorCategoriesPayload>
+        }
+        createMany: {
+          args: Prisma.TutorCategoriesCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TutorCategoriesCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TutorCategoriesPayload>[]
+        }
+        delete: {
+          args: Prisma.TutorCategoriesDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TutorCategoriesPayload>
+        }
+        update: {
+          args: Prisma.TutorCategoriesUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TutorCategoriesPayload>
+        }
+        deleteMany: {
+          args: Prisma.TutorCategoriesDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TutorCategoriesUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TutorCategoriesUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TutorCategoriesPayload>[]
+        }
+        upsert: {
+          args: Prisma.TutorCategoriesUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TutorCategoriesPayload>
+        }
+        aggregate: {
+          args: Prisma.TutorCategoriesAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTutorCategories>
+        }
+        groupBy: {
+          args: Prisma.TutorCategoriesGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TutorCategoriesGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TutorCategoriesCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TutorCategoriesCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1195,7 +1270,6 @@ export type BookingScalarFieldEnum = (typeof BookingScalarFieldEnum)[keyof typeo
 
 export const CategoriesScalarFieldEnum = {
   id: 'id',
-  tutorId: 'tutorId',
   category: 'category'
 } as const
 
@@ -1240,6 +1314,15 @@ export const TutionInfoScalarFieldEnum = {
 } as const
 
 export type TutionInfoScalarFieldEnum = (typeof TutionInfoScalarFieldEnum)[keyof typeof TutionInfoScalarFieldEnum]
+
+
+export const TutorCategoriesScalarFieldEnum = {
+  id: 'id',
+  tutorId: 'tutorId',
+  categoryId: 'categoryId'
+} as const
+
+export type TutorCategoriesScalarFieldEnum = (typeof TutorCategoriesScalarFieldEnum)[keyof typeof TutorCategoriesScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1494,6 +1577,7 @@ export type GlobalOmitConfig = {
   qualification?: Prisma.QualificationOmit
   reviews?: Prisma.ReviewsOmit
   tutionInfo?: Prisma.TutionInfoOmit
+  tutorCategories?: Prisma.TutorCategoriesOmit
 }
 
 /* Types for Logging */

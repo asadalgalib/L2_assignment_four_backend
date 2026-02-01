@@ -38,14 +38,12 @@ router.delete(
     authorize(UserRole.TUTOR),
     tutorControler.deleteQualification
 );
-
-// * Create Category
+// * Add Category
 router.post(
     "/category",
     authorize(UserRole.TUTOR),
-    tutorControler.createCategory
+    tutorControler.addCategory
 );
-
 // * Delete Category
 router.delete(
     "/category/:id",

@@ -57,22 +57,23 @@ const deleteQualification = async (req: Request, res: Response, next: NextFuncti
         next(error)
     }
 }
-// * Create Category 
-const createCategory = async (req: Request, res: Response, next: NextFunction) => {
+// * Add Category
+const addCategory = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const tutorId = req.user?.id as string;
-        const { category } = req.body;
-        const result = await tutorServices.createCategory({ tutorId, category });
-        return res.status(201).json(result)
+        const { categoryId } = req.body
+        const result = await tutorServices.addCategory({ tutorId, categoryId });
+        return res.status(200).json(result)
     } catch (error: any) {
         next(error)
     }
 }
-// * Delete Category 
-const deleteCategory = async (req: Request, res: Response,next : NextFunction) => {
+// * Delete Category
+const deleteCategory = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const id = req.params?.id as string;
-        const result = await tutorServices.deleteCategory(id);
+        const tutorId = req.user?.id as string;
+        const categoryId = req.params?.id as string;
+        const result = await tutorServices.deleteCategory({ tutorId, categoryId });
         return res.status(200).json(result)
     } catch (error: any) {
         next(error)
@@ -85,6 +86,6 @@ export const tutorControler = {
     createQualification,
     updateQualification,
     deleteQualification,
-    createCategory,
+    addCategory,
     deleteCategory
 }

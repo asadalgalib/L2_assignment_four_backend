@@ -43,12 +43,14 @@ const getTutor = async ({
                     },
                 },
                 {
-                    categories: {
+                    tutorCategories: {
                         some: {
                             category: {
-                                contains: search as string,
-                                mode: "insensitive",
-                            },
+                                category: {
+                                    contains: search as string,
+                                    mode: "insensitive"
+                                }
+                            }
                         },
                     },
                 },
@@ -69,11 +71,13 @@ const getTutor = async ({
         andConditions.push({
             OR: [
                 {
-                    categories: {
+                    tutorCategories: {
                         some: {
                             category: {
-                                contains: category as string,
-                                mode: "insensitive"
+                                category: {
+                                    contains: category as string,
+                                    mode: "insensitive"
+                                }
                             }
                         }
                     }
@@ -120,7 +124,11 @@ const getTutor = async ({
         },
         include: {
             tutionInfo: true,
-            categories: true,
+            tutorCategories: {
+                select: {
+                    category: true
+                }
+            },
             qualifications: true
         },
     });
@@ -157,7 +165,7 @@ const getTutorById = async (id: string) => {
         },
         include: {
             tutionInfo: true,
-            categories: true,
+            tutorCategories: true,
             qualifications: true
         },
     });
@@ -170,9 +178,6 @@ const getTutorById = async (id: string) => {
 // * Get Categories
 const getCategories = async () => {
     const result = await prisma.categories.findMany({
-        select: {
-            category: true
-        },
         distinct: ["category"],
         orderBy: {
             category: "asc"

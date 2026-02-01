@@ -89,7 +89,6 @@ CREATE TABLE "Booking" (
 -- CreateTable
 CREATE TABLE "Categories" (
     "id" TEXT NOT NULL,
-    "tutorId" TEXT NOT NULL,
     "category" TEXT NOT NULL,
 
     CONSTRAINT "Categories_pkey" PRIMARY KEY ("id")
@@ -135,6 +134,15 @@ CREATE TABLE "TutionInfo" (
     CONSTRAINT "TutionInfo_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "TutorCategories" (
+    "id" TEXT NOT NULL,
+    "tutorId" TEXT NOT NULL,
+    "categoryId" TEXT NOT NULL,
+
+    CONSTRAINT "TutorCategories_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "user_email_key" ON "user"("email");
 
@@ -157,9 +165,6 @@ CREATE INDEX "Booking_tutorId_idx" ON "Booking"("tutorId");
 CREATE INDEX "Booking_studentId_idx" ON "Booking"("studentId");
 
 -- CreateIndex
-CREATE INDEX "Categories_tutorId_idx" ON "Categories"("tutorId");
-
--- CreateIndex
 CREATE INDEX "Qualification_tutorId_idx" ON "Qualification"("tutorId");
 
 -- CreateIndex
@@ -177,6 +182,12 @@ CREATE UNIQUE INDEX "TutionInfo_tutorId_key" ON "TutionInfo"("tutorId");
 -- CreateIndex
 CREATE INDEX "TutionInfo_tutorId_idx" ON "TutionInfo"("tutorId");
 
+-- CreateIndex
+CREATE INDEX "TutorCategories_tutorId_categoryId_idx" ON "TutorCategories"("tutorId", "categoryId");
+
+-- CreateIndex
+CREATE INDEX "TutorCategories_tutorId_idx" ON "TutorCategories"("tutorId");
+
 -- AddForeignKey
 ALTER TABLE "session" ADD CONSTRAINT "session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -184,13 +195,10 @@ ALTER TABLE "session" ADD CONSTRAINT "session_userId_fkey" FOREIGN KEY ("userId"
 ALTER TABLE "account" ADD CONSTRAINT "account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Booking" ADD CONSTRAINT "Booking_tutorId_fkey" FOREIGN KEY ("tutorId") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Booking" ADD CONSTRAINT "Booking_tutorId_fkey" FOREIGN KEY ("tutorId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Booking" ADD CONSTRAINT "Booking_studentId_fkey" FOREIGN KEY ("studentId") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Categories" ADD CONSTRAINT "Categories_tutorId_fkey" FOREIGN KEY ("tutorId") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Booking" ADD CONSTRAINT "Booking_studentId_fkey" FOREIGN KEY ("studentId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Qualification" ADD CONSTRAINT "Qualification_tutorId_fkey" FOREIGN KEY ("tutorId") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -206,3 +214,9 @@ ALTER TABLE "Reviews" ADD CONSTRAINT "Reviews_bookingId_fkey" FOREIGN KEY ("book
 
 -- AddForeignKey
 ALTER TABLE "TutionInfo" ADD CONSTRAINT "TutionInfo_tutorId_fkey" FOREIGN KEY ("tutorId") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "TutorCategories" ADD CONSTRAINT "TutorCategories_tutorId_fkey" FOREIGN KEY ("tutorId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "TutorCategories" ADD CONSTRAINT "TutorCategories_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Categories"("id") ON DELETE CASCADE ON UPDATE CASCADE;

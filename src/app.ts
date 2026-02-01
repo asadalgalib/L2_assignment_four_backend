@@ -8,6 +8,7 @@ import { bookingRoutes } from './modules/bookingRoute/booking.route';
 import { userRoutes } from './modules/userRoute/user.route';
 import { reviewRoutes } from './modules/reviewRoute/review.route';
 import { statsRoutes } from './modules/statsRoute/stats.route';
+import { categoryRoutes } from './modules/categoriesRoute/categories.route';
 import errorHandler from './middleware/errorHandler';
 import notFound from './middleware/notFound';
 
@@ -35,6 +36,9 @@ app.use("/tutor", tutorRoutes);
 
 // * Review routes
 app.use("/review", reviewRoutes)
+
+// * Category Routes
+app.use("/category",categoryRoutes)
 
 // * Stats routes
 app.use("/stats", statsRoutes)

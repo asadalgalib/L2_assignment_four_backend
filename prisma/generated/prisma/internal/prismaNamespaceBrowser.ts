@@ -59,7 +59,8 @@ export const ModelName = {
   Categories: 'Categories',
   Qualification: 'Qualification',
   Reviews: 'Reviews',
-  TutionInfo: 'TutionInfo'
+  TutionInfo: 'TutionInfo',
+  TutorCategories: 'TutorCategories'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -156,7 +157,6 @@ export type BookingScalarFieldEnum = (typeof BookingScalarFieldEnum)[keyof typeo
 
 export const CategoriesScalarFieldEnum = {
   id: 'id',
-  tutorId: 'tutorId',
   category: 'category'
 } as const
 
@@ -201,6 +201,15 @@ export const TutionInfoScalarFieldEnum = {
 } as const
 
 export type TutionInfoScalarFieldEnum = (typeof TutionInfoScalarFieldEnum)[keyof typeof TutionInfoScalarFieldEnum]
+
+
+export const TutorCategoriesScalarFieldEnum = {
+  id: 'id',
+  tutorId: 'tutorId',
+  categoryId: 'categoryId'
+} as const
+
+export type TutorCategoriesScalarFieldEnum = (typeof TutorCategoriesScalarFieldEnum)[keyof typeof TutorCategoriesScalarFieldEnum]
 
 
 export const SortOrder = {
