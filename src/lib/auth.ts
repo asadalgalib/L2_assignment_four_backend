@@ -39,6 +39,33 @@ export const auth = betterAuth({
         autoSignIn: false,
         requireEmailVerification: false
     },
+    databaseHooks: {
+        user: {
+            create: {
+                after: async (user, context) => {
+                    const cookieHeader = context?.headers?.get("cookie") || "";
+                    const user_role = cookieHeader
+                        .split("; ")
+                        .find(row => row.startsWith("user_role="))
+                        ?.split("=")[1];
+
+                    console.log("Found Role in Cookie:", user_role);
+
+                    if (user_role === "TUTOR") {
+                        await prisma.user.update({
+                            where: {
+                                id: user.id
+                            },
+                            data: {
+                                role: "TUTOR"
+                            },
+                        });
+                        console.log(`Success: Role updated to TUTOR for ${user.email}`);
+                    }
+                }
+            }
+        }
+    },
     socialProviders: {
         google: {
             prompt: "select_account consent",
